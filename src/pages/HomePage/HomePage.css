@@ -1,0 +1,75 @@
+.color {
+  color: blue;
+}
+.logo {
+  width: 30%;
+}
+.contenedor {
+  font-family: "Raleway", sans-serif;
+  width: 100%;
+}
+.body {
+  background-image: url("/public/assets/asturias.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+}
+
+.no-pad {
+  padding: 0 !important;
+}
+
+.centrado-vertical {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+}
+
+.titulo {
+  color: white;
+  font-size: 35px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.grupo {
+  border: black 2px;
+}
+.buscar{
+    background-color: #3a5265;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: #000000;
+  font-weight: 600;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0;
+  height: 50px;
+  width: 100%;
+  white-space: nowrap;
+}
+.texto {
+  border-radius: 5px;
+  border: 1px solid;
+  
+  height: 50px;
+  width: 100%;
+  border-color: #ffffff;
+  background-color: transparent;
+}
+
+.redondo{
+    border-radius: 100px;
+}
+
+.pad{
+    padding-top: 3%;
+}

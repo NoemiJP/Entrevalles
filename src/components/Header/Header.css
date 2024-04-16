@@ -1,0 +1,22 @@
+.width-full{
+    width: 100%;
+}
+.barra{
+    background-color: #3A5265;
+    min-height: 80px;
+    position: sticky;
+}
+.logo{
+    max-height: 60px;
+
+}
+.padd{
+    padding: 5px;
+}
+.link{
+    font-size: 16px;
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    padding: 3%;
+}
