@@ -6,6 +6,7 @@ import DigsPage from './pages/DigsPage/DigsPage';
 import DiscoverPage from './pages/DiscoverPage/DiscoverPage';
 import AccessPage from './pages/AccessPage/AccessPage';
 
+
 function App() {
   return (
     <Router>
