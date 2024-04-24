@@ -5,9 +5,9 @@ import { DateInput } from '@mantine/dates';
 import './HomePage.css';
 import { Button } from '@mantine/core';
 import { createTheme, MantineProvider } from '@mantine/core';
-import { TextInput, rem } from '@mantine/core';
+import { TextInput,Autocomplete, rem } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-import { IconLocation } from '@tabler/icons-react';
+import { IconLocation,IconBrandInstagram,IconBrandFacebook } from '@tabler/icons-react';
 import { useInputState } from '@mantine/hooks';
 function HomePage() {
     const icon = <IconLocation style={{ width: rem(16), height: rem(16) }} />;
@@ -15,6 +15,64 @@ function HomePage() {
         /** Put your mantine theme override here */
     });
     const [experiencias, setExperiencias] = useState([]);
+    const localidadesAsturias = [
+        "Oviedo",
+        "Gijón",
+        "Avilés",
+        "Siero",
+        "Langreo",
+        "Mieres",
+        "Castrillón",
+        "San Martín del Rey Aurelio",
+        "Corvera de Asturias",
+        "Llanera",
+        "Cangas del Narcea",
+        "Valdés",
+        "Villaviciosa",
+        "Navia",
+        "Laviana",
+        "Carreño",
+        "Gozón",
+        "Grado",
+        "Pravia",
+        "Tineo",
+        "Aller",
+        "Parres",
+        "Cangas de Onís",
+        "Ribadesella",
+        "Llanes",
+        "Piloña",
+        "Noreña",
+        "Peñamellera Alta",
+        "Peñamellera Baja",
+        "Caso",
+        "Sobrescobio",
+        "Belmonte de Miranda",
+        "Ponga",
+        "Amieva",
+        "Onís",
+        "Caravia",
+        "Colunga",
+        "Ribera de Arriba",
+        "Teverga",
+        "Proaza",
+        "Quirós",
+        "Santo Adriano",
+        "Bimenes",
+        "Villayón",
+        "Cudillero",
+        "Degaña",
+        "Illano",
+        "Boal",
+        "Ibias",
+        "Sobrado",
+        "San Tirso de Abres",
+        "Santa Eulalia de Oscos",
+        "Vegadeo",
+        "El Franco",
+        "Castropol",
+        "Tapia de Casariego"
+    ];
     const [loading, setLoading] = useState(false);
     const [fechaInicio, setFechaInicio] = useState();
     const [fechaFin, setFechaFin] = useState();
@@ -47,15 +105,14 @@ function HomePage() {
                     </div>
                     <div className='row pad'>
                         <div className='col-3'>
-                            <TextInput
+                            <Autocomplete
                                 leftSectionPointerEvents="none"
                                 leftSection={icon}
                                 placeholder="Destino"
                                 radius="md"
                                 size="md"
-                                onChange={(event) =>
-                                    setDestino(event.currentTarget.value)
-                                  }
+                                data={localidadesAsturias}
+                                value={destino} onChange={setDestino}
                             />
                         </div>
                         <div className='col-2'><DateInput

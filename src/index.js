@@ -9,13 +9,30 @@ import '@mantine/dates/styles.css';
 
 
 
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, createTheme, MantineColorsTuple } from '@mantine/core';
+const myColor = [
+  '#f2f5f8',
+  '#e5e7e9',
+  '#c7ced3',
+  '#a5b3be',
+  '#899cac',
+  '#778ea1',
+  '#6d879d',
+  '#5c7489',
+  '#4f677b',
+  '#3f596e'
+];
 
+const theme = createTheme({
+  colors: {
+    blue: myColor
+  }
+});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider theme={theme}>
     <App />
     </MantineProvider>
   </React.StrictMode>
