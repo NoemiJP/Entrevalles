@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "@mantine/core/styles.css";
 import '@mantine/dates/styles.css';
+import '@mantine/carousel/styles.css';
 
 
 

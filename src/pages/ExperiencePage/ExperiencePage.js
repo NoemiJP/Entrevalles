@@ -11,6 +11,8 @@ import { useInputState } from '@mantine/hooks';
 function ExperiencePage() {
     const [experiencias, setExperiencias] = useState([]);
     const [localizacion, setLocalizacion] = useState();
+    const [equipamiento, setEquipamiento] = useState();
+    const [alojamiento, setAlojamiento] = useState();
     const icon = <IconInfoCircle />;
     const navigate = useNavigate();
     useEffect(() => {
@@ -36,7 +38,9 @@ function ExperiencePage() {
     }, []);
     useEffect(() => {
         const postData = {
-            localizacion: localizacion.length > 0 ? localizacion: null
+            localizacion: localizacion?.length > 0 ? localizacion: null,
+            equipamiento: equipamiento?.length > 0 ? equipamiento: null,
+            alojamiento: alojamiento?.length > 0 ? alojamiento: null
         };
         // Configuración de la solicitud
         const requestOptions = {
@@ -54,7 +58,7 @@ function ExperiencePage() {
                 setExperiencias(data);
             })
             .catch(error => console.error('Error fetching users:', error));
-    }, [localizacion]);
+    }, [localizacion,equipamiento, alojamiento]);
     const detalleExperiencia = (id) => {
         console.log('Clickada', id);
         navigate('/experiencies/' + id);
@@ -83,17 +87,17 @@ function ExperiencePage() {
                     <Grid>
                         <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
                             <Checkbox.Group
-                                defaultValue={['react']}
                                 label='EQUIPAMIENTO'
+                                value={equipamiento} onChange={setEquipamiento}
                             >
                                 <Group mt="md">
-                                    <Checkbox value="piscina" label="Piscina" />
+                                    <Checkbox value="Piscina" label="Piscina" />
                                     <Checkbox value="Ascensor" label="Ascensor" />
-                                    <Checkbox value="aparcamiento" label="Aparcamiento" />
-                                    <Checkbox value="aire" label="Aire acondicionado" />
-                                    <Checkbox value="animales" label="Aceptan animales" />
-                                    <Checkbox value="mar" label="Vistas al mar" />
-                                    <Checkbox value="montania" label="Vistas a la montaña" />
+                                    <Checkbox value="Aparcamiento" label="Aparcamiento" />
+                                    <Checkbox value="Aire acondicionado" label="Aire acondicionado" />
+                                    <Checkbox value="Aceptan animales" label="Aceptan animales" />
+                                    <Checkbox value="Vistas al mar" label="Vistas al mar" />
+                                    <Checkbox value="Vistas a la montaña" label="Vistas a la montaña" />
                                 </Group>
                             </Checkbox.Group>
                         </Grid.Col>
@@ -102,8 +106,8 @@ function ExperiencePage() {
                     <Grid>
                         <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
                             <Checkbox.Group
-                                defaultValue={['react']}
                                 label='TIPO DE ALOJAMIENTO'
+                                value={alojamiento} onChange={setAlojamiento}
                             >
                                 <Group mt="md">
                                     <Checkbox value="hotel" label="Hotel" />
