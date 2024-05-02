@@ -12,7 +12,7 @@ import Normas from "./components/Normas";
 import CarouselExperience from "./components/CarouselExperience";
 import { Calendar } from '@mantine/dates';
 import dayjs from 'dayjs';
-
+import FormularioReserva from "./components/FormularioReserva";
 const ExperienciesDetail = () => {
     let params = useParams();
     const [experiencia, setExperiencia] = useState();
@@ -33,9 +33,9 @@ const ExperienciesDetail = () => {
                 <>
                     <Grid>             
                       <CarouselExperience experiencia={experiencia}></CarouselExperience>
-                        <Grid.Col span={{ base: 12 }} >
+                        <Grid.Col span={{ base: 7 }} >
                             <Tabs defaultValue="Equipamiento">
-                                <Tabs.List justify="center">
+                                <Tabs.List justify="center" style={{minWidth:"180%"}}>
                                     <Tabs.Tab value="Equipamiento">
                                         Equipamiento
                                     </Tabs.Tab>
@@ -46,7 +46,7 @@ const ExperienciesDetail = () => {
                                         Normas
                                     </Tabs.Tab>
                                     <Tabs.Tab value="Calendario" >
-                                        Calendario
+                                        Reservas
                                     </Tabs.Tab>
                                 </Tabs.List>
 
@@ -67,6 +67,9 @@ const ExperienciesDetail = () => {
                                 </Tabs.Panel>
                             </Tabs>
                         </Grid.Col>
+                        <Grid.Col span={{ base: 3 }} offset={1} mt="4%">
+<FormularioReserva experiencia={experiencia}></FormularioReserva>
+            </Grid.Col>
 
 
                     </Grid>
