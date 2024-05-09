@@ -13,6 +13,7 @@ import CarouselExperience from "./components/CarouselExperience";
 import { Calendar } from '@mantine/dates';
 import dayjs from 'dayjs';
 import FormularioReserva from "./components/FormularioReserva";
+
 const ExperienciesDetail = () => {
     let params = useParams();
     const [experiencia, setExperiencia] = useState();
@@ -31,11 +32,11 @@ const ExperienciesDetail = () => {
             <Header></Header>
             {experiencia ? (
                 <>
-                    <Grid>             
-                      <CarouselExperience experiencia={experiencia}></CarouselExperience>
+                    <Grid>
+                        <CarouselExperience experiencia={experiencia}></CarouselExperience>
                         <Grid.Col span={{ base: 7 }} >
                             <Tabs defaultValue="Equipamiento">
-                                <Tabs.List justify="center" style={{minWidth:"180%"}}>
+                                <Tabs.List justify="center" style={{ minWidth: "180%" }}>
                                     <Tabs.Tab value="Equipamiento">
                                         Equipamiento
                                     </Tabs.Tab>
@@ -51,25 +52,25 @@ const ExperienciesDetail = () => {
                                 </Tabs.List>
 
                                 <Tabs.Panel value="Equipamiento">
-                                <Equipamiento experiencia={experiencia}></Equipamiento>
+                                    <Equipamiento experiencia={experiencia}></Equipamiento>
                                 </Tabs.Panel>
 
                                 <Tabs.Panel value="Localizacion">
-                                <Localizacion experiencia={experiencia}></Localizacion>
+                                    <Localizacion experiencia={experiencia}></Localizacion>
                                 </Tabs.Panel>
 
                                 <Tabs.Panel value="Normas">
-                                <Normas experiencia={experiencia}></Normas>
+                                    <Normas experiencia={experiencia}></Normas>
                                 </Tabs.Panel>
 
                                 <Tabs.Panel value="Calendario">
-                                  <Calendario experiencia={experiencia}></Calendario>
+                                    <Calendario experiencia={experiencia}></Calendario>
                                 </Tabs.Panel>
                             </Tabs>
                         </Grid.Col>
                         <Grid.Col span={{ base: 3 }} offset={1} mt="4%">
-<FormularioReserva experiencia={experiencia}></FormularioReserva>
-            </Grid.Col>
+                            <FormularioReserva experiencia={experiencia}></FormularioReserva>
+                        </Grid.Col>
 
 
                     </Grid>
