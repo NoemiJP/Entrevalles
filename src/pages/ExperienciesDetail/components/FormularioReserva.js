@@ -6,9 +6,13 @@ import { IconBrandNordVpn } from '@tabler/icons-react';
 import "../ExperienciesDetail.css";
 import { Calendar, DateInput } from '@mantine/dates';
 import dayjs from 'dayjs';
-
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from "./CheckoutForm";
+import { useUser } from "../../../components/Usuario/UserProvider";
 
 const FormularioReserva = ({ experiencia }) => {
+    const { user, updateUser } = useUser();
     const [fechaInicio, setFechaInicio] = useState(new Date());
     const [fechaFin, setFechaFin] = useState(new Date());
     const [adultos, setAdultos] = useState(2);
@@ -18,13 +22,41 @@ const FormularioReserva = ({ experiencia }) => {
     const [precioTotal, setPrecioTotal] = useState(0);
     const [huespedes, setHuespedes] = useState(0);
     const [dias, setDias] = useState(0);
+    const [usuarioError,setUsuarioError] = useState("");
+    const stripePromise = loadStripe('pk_test_51PFatYRxV1RVND84NS81925iyGjIsEdL10igwkgPlHcPwWWxBCxxm5eN9vnOqjp5fsg1FaY4nuFoSqNAAp9uu2jY002xmZtHtR');
+    const [options,setOptions] = useState({clientSecret:null});
+    useEffect(() => {
+        if(precioTotal != 0){
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify({
+                precio: precioTotal *100
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+
+            }
+        };
+        fetch('/payment',requestOptions)
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                setOptions({clientSecret: data});
+                console.log(options);
+            })
+            .catch(error => console.error('Error fetching users:', error));
+        }
+    }, [precioTotal]);
     const buscar = () => {
+        if(user.id == null){
+            setUsuarioError("Debe iniciar sesión antes de reservar");
+            return;
+        }
         console.log(adultos);
         setHuespedes(adultos + niños + mascotas);
         let dias = calcularDiferenciaFechas(fechaInicio, fechaFin)
         setDias(dias);
         setPrecioTotal(dias * experiencia.precio);
-        setMostrarPrecio(true);
     };
     useEffect(() => {
         fechaFin.setDate(fechaFin.getDate() + 1);
@@ -126,16 +158,18 @@ const FormularioReserva = ({ experiencia }) => {
             </Group>
 
             <Button color="blue" fullWidth mt="md" onClick={buscar} radius="md">
-                Buscar
+                Reservar
             </Button>
-            {mostrarPrecio ? (<>
+            {usuarioError?(<div>{usuarioError}</div>):(null)}
+            {options.clientSecret != null ? (<>
                 <Group justify="space-between" mt="md" mb="xs">
                     <Text>Número de noches</Text><Text>{dias}</Text></Group>
                 <Group justify="space-between" mt="md" mb="xs"><Text>Huéspedes</Text><Text>{huespedes}</Text></Group>
-                <Group justify="space-between" mt="md" mb="xs"> <Text fw={700}>Precio Total</Text><Text fw={700}>{precioTotal} €</Text>
-                </Group> <Button color="blue" fullWidth mt="md" onClick={buscar} radius="md">
-                    RESERVAR
-                </Button></>)
+                <Group justify="space-between" mt="md" mb="xs" style={{minWidth: "100%"}}> <Text fw={700}>Precio Total</Text><Text fw={700}>{precioTotal} €</Text>
+                </Group> 
+                <Elements stripe={stripePromise} options={options}>
+                        <CheckoutForm id={experiencia.id} experiencia={experiencia} fechaInicio={fechaInicio} fechaFin={fechaFin} huespedes={huespedes} precioTotal={precioTotal}  />
+                    </Elements></>)
                 : (null)}
         </Card>
     );

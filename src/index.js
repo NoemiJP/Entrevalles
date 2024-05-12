@@ -11,6 +11,7 @@ import '@mantine/carousel/styles.css';
 
 
 import { MantineProvider, createTheme, MantineColorsTuple } from '@mantine/core';
+import { UserProvider } from './components/Usuario/UserProvider';
 const myColor = [
   '#f2f5f8',
   '#e5e7e9',
@@ -32,9 +33,10 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    
+
     <MantineProvider theme={theme}>
-    <App />
+
+        <App />
     </MantineProvider>
   </React.StrictMode>
 );

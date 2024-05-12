@@ -5,14 +5,16 @@ import { BackgroundImage, Card, Image, Text, Badge, Button, Group, Grid, TextInp
 import { useForm } from '@mantine/form';
 import Footer from '../../components/Footer/Footer';
 import { Link } from 'react-router-dom';
-
+import { useUser } from '../../components/Usuario/UserProvider';
 import { useNavigate } from 'react-router-dom';
 
 
 function AccessPage() {
+    const { user, updateUser } = useUser();
     const [email, setEmail] = useState();
     const [contrasenya, setContrasenya] = useState();
     const [errorLogin, setErrorLogin] = useState();
+    const navigate = useNavigate();
     
     const form = useForm({
         mode: 'uncontrolled',
@@ -69,7 +71,10 @@ function AccessPage() {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
+                console.log(data); 
+                updateUser(data);
+                console.log(user);
+                navigate("/");
             })
             .catch(error => console.error('Error login:', error));
     };
@@ -114,7 +119,7 @@ function AccessPage() {
                                         {...form.getInputProps('contrasenya')}
 
                                     />
-                                    <Link fw={500} href="URL_DE_TU_PAGINA">¿Olvidaste la contraseña?</Link>
+                                    <Link fw={500} to="/newpass">¿Olvidaste la contraseña?</Link>
                                 </Group>
 
                                 {errorLogin ? (<Group mt="md" mb="xs">
