@@ -97,7 +97,7 @@ function HomePage() {
     };
     return (
         <div className='contenedor no-pad'>
-            <Header titulo="Prueba"></Header>
+            <Header></Header>
             <div className="color body align-items-center d-flex justify-content-center  no-pad">
                 <div className='row'>
                     <div className='col-12 d-flex justify-content-center'>
