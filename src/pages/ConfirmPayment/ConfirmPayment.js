@@ -2,59 +2,106 @@ import { React, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { Container } from "@mantine/core";
-import { Card, Image, NumberInput, Text, Badge, Button, Group, Title, Grid, BackgroundImage } from "@mantine/core";
+import { useUser } from "../../components/Usuario/UserProvider";
+import './ConfirmPayment.css';
+import { Container, rem, Card, Image, NumberInput, Text, Badge, Button, Group, Title, Grid, BackgroundImage } from "@mantine/core";
+import { IconArrowRight } from '@tabler/icons-react';
 
 const ConfirmPayment = () => {
-    
+
     let paramsUrl = useParams();
+    const { user, updateUser } = useUser();
     const params = new URLSearchParams(window.location.search);
-    const [paymentDetails,setPaymentDetails] = useState();
-    const [reserva,setReserva] = useState();
+    const [paymentDetails, setPaymentDetails] = useState();
+    const [reserva, setReserva] = useState();
     useEffect(() => {
-        fetch('/confirmPayment/'+params.get("payment_intent"))
+        fetch('/login/'  + paramsUrl["userId"])
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); 
+                updateUser(data);
+            })
+            .catch(error => console.error('Error login:', error));
+        fetch('/confirmPayment/' + params.get("payment_intent"))
             .then(response => response.json())
             .then(data => {
                 console.log(data);
                 setPaymentDetails(data);
             })
             .catch(error => console.error('Error fetching users:', error));
-            fetch('/reserva/' + paramsUrl["reservaId"])
+        fetch('/reserva/' + paramsUrl["reservaId"])
             .then(response => response.json())
             .then(data => {
                 console.log(data);
                 setReserva(data);
             })
             .catch(error => console.error('Error fetching users:', error));
-        }, []);
+    }, []);
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('es-ES', options);
+    };
+
     return (
         <>
-<Header></Header>
-<BackgroundImage
-                src="./assets/login.jpg"
-                position="center"
-                size="cover"
-                repeat="no-repeat"
-                height="100vh"
-                maxHeight="100vh">
+           {user.nombre != null ? (<> <Header></Header>
+            <Container size="xxl" className="mainContainerPayment payment"  >
+               <Grid justify="center" align="center" overflow="hidden" >
+                    <Grid.Col span={{ base: 12 }} mt="7%">
+                        {reserva ? (<Card shadow="sm" radius="md" withBorder  >
 
-                <Grid justify="center" align="center" >
-                    <Grid.Col span={{ base: 6 }} offset={3} mt="11%"  mb="11%" >
-                      {reserva?(  <Card shadow="sm" radius="md" withBorder >
-
-                            <Group justify="center" mt="md" mb="xs">
-                                <Title order={3}>RESUMEN DEL PAGO</Title>
+                            <Group justify="center" mt="md" mb="md" c={'#355D75'}>
+                                <Title order={3}>RESUMEN DE LA  RESERVA</Title>
                             </Group>
-                     
 
-                        </Card>):(null)}
+                            <Group direction="column" spacing="md" mb="md">
+                                <Text size="md" fw={500} >Localidad</Text>
+                                <IconArrowRight style={{ width: rem(16), height: rem(16), color:'#355D75' }} />  
+                                <Text size="md">{reserva.experiencia.localizacion}</Text>
+                            </Group>
+
+                            <Group direction="column" spacing="md" mb="md">
+                                <Text size="md" fw={500} >Alojamiento</Text>
+                                <IconArrowRight style={{ width: rem(16), height: rem(16), color:'#355D75' }} />
+                                <Text size="md">{reserva.experiencia.titulo}</Text>
+                            </Group>
+
+                            <Group direction="column" spacing="md" mb="md">
+                                <Text size="md" fw={500} >Fecha de entrada </Text>
+                                <IconArrowRight style={{ width: rem(16), height: rem(16), color:'#355D75' }} />
+                                <Text size="md">{formatDate(reserva.fechaInicio)}</Text>
+                            </Group>
+
+                            <Group direction="column" spacing="md" mb="md">
+                            <Text size="md" fw={500} >Fecha de salida </Text>
+                            <IconArrowRight style={{ width: rem(16), height: rem(16), color:'#355D75' }} />
+                            <Text size="md">{formatDate(reserva.fechaFin)}</Text>
+                            </Group>
+
+                            <Group direction="column" spacing="md" mb="md">
+                            <Text size="md" fw={500} >Número de huéspedes</Text>
+                            <IconArrowRight style={{ width: rem(16), height: rem(16), color:'#355D75' }} />
+                            <Text size="md">{reserva.huespedesTotales}</Text>
+                            </Group>
+                            
+                            <Group direction="column" spacing="md" mb="md">
+                            <Text size="md" fw={500} >Precio pagado</Text>
+                            <IconArrowRight style={{ width: rem(16), height: rem(16), color:'#355D75'}} />
+                            <Text size="md">{reserva.precioTotal}€</Text>
+                            </Group>
+                        </Card>) : (null)}
 
                     </Grid.Col>
                     <Grid.Col span={{ base: 3 }}></Grid.Col>
                 </Grid>
-            </BackgroundImage>
-<Footer></Footer>
-</>
-    )};
+            </Container>
+            <Footer></Footer></>):(null)}
+        </>
+    );
+}
+
 
 export default ConfirmPayment;

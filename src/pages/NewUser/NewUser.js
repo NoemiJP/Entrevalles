@@ -1,11 +1,11 @@
 import Header from '../../components/Header/Header';
 import React, { useState, useEffect } from 'react';
-import { BackgroundImage, Card, Image, Text, Badge, Button, Group, Grid, TextInput, PasswordInput, Box } from '@mantine/core';
+import { BackgroundImage, Card,Container, Image, Text, Badge, Button, Group, Grid, TextInput, PasswordInput, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Footer from '../../components/Footer/Footer';
 import { Calendar, DateInput } from '@mantine/dates';
 import { Link } from 'react-router-dom';
-
+import "./NewUser.css";
 
 function NewUser() {
    
@@ -76,15 +76,12 @@ function NewUser() {
     return (
         <>
             <Header></Header>
-
-            <BackgroundImage
-                src="./assets/login.jpg">
-
+            <Container  size="xxl" className="mainContainer body"  >
                 <Grid justify="center" align="center" >
-                    <Grid.Col span={{ base: 6 }} offset={3} mt="7%">
-                        <Card shadow="sm" radius="md" withBorder mb="7%" >
+                    <Grid.Col span={{ base: 6 }} offset={3}>
+                        <Card shadow="sm" radius="md" withBorder>
                             <form onSubmit={form.onSubmit(registro)} >
-                                <Group direction="column" spacing="md">
+                                <Group direction="column" spacing="md" mb="md">
 
                                     <TextInput
                                         required
@@ -149,14 +146,17 @@ function NewUser() {
                                         radius="md"
                                         {...form.getInputProps('fechaNacimiento')}
                 />
-                                    <Button type="submit" variant="filled">Registrarse</Button>
+                                    
+                                </Group>
+                                <Group spacing="md">
+                                <Button type="submit" variant="filled" style={{ minWidth: "100%" }}>Registrarse</Button>
                                 </Group>
                             </form>
                         </Card>
                     </Grid.Col>
                     <Grid.Col span={{ base: 3 }}></Grid.Col>
                 </Grid>
-            </BackgroundImage>
+                </Container>
             <Footer></Footer>
         </>
     );

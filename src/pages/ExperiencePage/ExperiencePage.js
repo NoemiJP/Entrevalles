@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import './ExperiencePage.css';
 import { Grid } from '@mantine/core';
 import { Checkbox, Group } from '@mantine/core';
-import { Card, Image,Alert, Text, Badge, ScrollArea, Button, rem, useMantineTheme } from '@mantine/core';
-import { IconLocation, IconBed,IconInfoCircle, IconBath } from '@tabler/icons-react';
+import { Card, Image, Alert, Text, Badge, ScrollArea, Button, rem, useMantineTheme } from '@mantine/core';
+import { IconLocation, IconBed, IconInfoCircle, IconBath } from '@tabler/icons-react';
 import { useInputState } from '@mantine/hooks';
+import Footer from '../../components/Footer/Footer';
 
 function ExperiencePage() {
     const [experiencias, setExperiencias] = useState([]);
@@ -38,9 +39,9 @@ function ExperiencePage() {
     }, []);
     useEffect(() => {
         const postData = {
-            localizacion: localizacion?.length > 0 ? localizacion: null,
-            equipamiento: equipamiento?.length > 0 ? equipamiento: null,
-            alojamiento: alojamiento?.length > 0 ? alojamiento: null
+            localizacion: localizacion?.length > 0 ? localizacion : null,
+            equipamiento: equipamiento?.length > 0 ? equipamiento : null,
+            alojamiento: alojamiento?.length > 0 ? alojamiento : null
         };
         // Configuración de la solicitud
         const requestOptions = {
@@ -58,117 +59,121 @@ function ExperiencePage() {
                 setExperiencias(data);
             })
             .catch(error => console.error('Error fetching users:', error));
-    }, [localizacion,equipamiento, alojamiento]);
+    }, [localizacion, equipamiento, alojamiento]);
     const detalleExperiencia = (id) => {
         console.log('Clickada', id);
         navigate('/experiencies/' + id);
     }
     return (
-        <div className='container-fluid contenedor'>
+        <>
             <Header></Header>
-            <Grid mt="xl">
-                <Grid.Col span={{ base: 4, md: 4, lg: 2, xs: 5 }} >
-                    <Grid>
-                        <Grid.Col span={{ base: 4, md: 3, lg: 6, xs: 6, sm: 5 }} >
-                            <Checkbox.Group
-                                label='LOCALIDADES'
-                                value={localizacion} onChange={setLocalizacion}
-                            >
 
-                                <Group mt="xs">
-                                    <Checkbox value="Langreo" label="Langreo" />
-                                    <Checkbox value="Mieres" label="Mieres" />
-                                    <Checkbox value="Laviana" label="Laviana" />
-                                    <Checkbox value="Gijon" label="Gijón" />
-                                </Group>
-                            </Checkbox.Group>
-                        </Grid.Col>
-                    </Grid>
-                    <Grid>
-                        <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
-                            <Checkbox.Group
-                                label='EQUIPAMIENTO'
-                                value={equipamiento} onChange={setEquipamiento}
-                            >
-                                <Group mt="md">
-                                    <Checkbox value="Piscina" label="Piscina" />
-                                    <Checkbox value="Ascensor" label="Ascensor" />
-                                    <Checkbox value="Aparcamiento" label="Aparcamiento" />
-                                    <Checkbox value="Aire acondicionado" label="Aire acondicionado" />
-                                    <Checkbox value="Aceptan animales" label="Aceptan animales" />
-                                    <Checkbox value="Vistas al mar" label="Vistas al mar" />
-                                    <Checkbox value="Vistas a la montaña" label="Vistas a la montaña" />
-                                </Group>
-                            </Checkbox.Group>
-                        </Grid.Col>
-                    </Grid>
+            <div className='container-fluid contenedor'>
+                <Grid mt="xl">
+                    <Grid.Col span={{ base: 4, md: 4, lg: 2, xs: 5 }} >
+                        <Grid>
+                            <Grid.Col span={{ base: 4, md: 3, lg: 6, xs: 6, sm: 5 }} >
+                                <Checkbox.Group
+                                    label='LOCALIDADES'
+                                    value={localizacion} onChange={setLocalizacion}
+                                >
 
-                    <Grid>
-                        <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
-                            <Checkbox.Group
-                                label='TIPO DE ALOJAMIENTO'
-                                value={alojamiento} onChange={setAlojamiento}
-                            >
-                                <Group mt="md">
-                                    <Checkbox value="hotel" label="Hotel" />
-                                    <Checkbox value="camping" label="Camping" />
-                                    <Checkbox value="casa" label="Casa" />
-                                    <Checkbox value="apartamento" label="Apartamento" />
-                                </Group>
-                            </Checkbox.Group>
-                        </Grid.Col>
-                    </Grid>
+                                    <Group mt="xs">
+                                        <Checkbox value="Langreo" label="Langreo" />
+                                        <Checkbox value="Mieres" label="Mieres" />
+                                        <Checkbox value="Laviana" label="Laviana" />
+                                        <Checkbox value="Gijon" label="Gijón" />
+                                    </Group>
+                                </Checkbox.Group>
+                            </Grid.Col>
+                        </Grid>
+                        <Grid>
+                            <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
+                                <Checkbox.Group
+                                    label='EQUIPAMIENTO'
+                                    value={equipamiento} onChange={setEquipamiento}
+                                >
+                                    <Group mt="md">
+                                        <Checkbox value="Piscina" label="Piscina" />
+                                        <Checkbox value="Ascensor" label="Ascensor" />
+                                        <Checkbox value="Aparcamiento" label="Aparcamiento" />
+                                        <Checkbox value="Aire acondicionado" label="Aire acondicionado" />
+                                        <Checkbox value="Aceptan animales" label="Aceptan animales" />
+                                        <Checkbox value="Vistas al mar" label="Vistas al mar" />
+                                        <Checkbox value="Vistas a la montaña" label="Vistas a la montaña" />
+                                    </Group>
+                                </Checkbox.Group>
+                            </Grid.Col>
+                        </Grid>
 
-                </Grid.Col>
-                <Grid.Col span={{ base: 8, md: 8, lg: 10, xs: 7 }}>
-                {experiencias.length != 0 ? (
-                        <ScrollArea type="auto" h={900} scrollbars="y">
-                            <Grid>
-                                {experiencias.map((element) => {
-                                    return (<Grid.Col span={{ base: 12, md: 4, lg: 3, xs: 12, sm: 6 }} >
-                                        <Card onClick={() => { detalleExperiencia(element.id) }} style={{ cursor: 'pointer' }} shadow="sm" padding="lg" radius="md" withBorder>
-                                            <Card.Section>
-                                                <Image
-                                                    src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
-                                                    height={160}
-                                                    alt="Norway"
-                                                />
-                                            </Card.Section>
+                        <Grid>
+                            <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
+                                <Checkbox.Group
+                                    label='TIPO DE ALOJAMIENTO'
+                                    value={alojamiento} onChange={setAlojamiento}
+                                >
+                                    <Group mt="md">
+                                        <Checkbox value="hotel" label="Hotel" />
+                                        <Checkbox value="camping" label="Camping" />
+                                        <Checkbox value="casa" label="Casa" />
+                                        <Checkbox value="apartamento" label="Apartamento" />
+                                    </Group>
+                                </Checkbox.Group>
+                            </Grid.Col>
+                        </Grid>
 
-                                            <Group justify="space-between" mt="md" mb="xs">
-                                                <Text fw={500}>{element.titulo}</Text>
-                                            </Group>
-
-                                            <Text size="sm" mt="md" c="dimmed">
-                                                {element.descripcion}
-                                            </Text>
-
-                                            <Text size="md" mt="md" fw={700} >
-                                                {element.precio} € DESDE/NOCHE
-                                            </Text>
-                                            <Group justify="flex-start" mt="md" mb="xs">
-                                                <Badge ><IconBed style={{ width: rem(16), height: rem(16) }} />  {element.habitaciones}</Badge>
-                                                {element.banios ? (
-                                                    <Badge ><IconBath style={{ width: rem(16), height: rem(16) }} />  {element.banios}</Badge>
-                                                ) : (null)}
-                                                <Badge ><IconLocation style={{ width: rem(16), height: rem(16) }} />  {element.localizacion}</Badge>
-
-                                            </Group>
-
-                                        </Card>
-                                    </Grid.Col>)
-                                })}
-
-
-                            </Grid>
-
-                        </ScrollArea>
-) : (<Alert variant="light" color="blue" title="No hay alojamientos disponibles para su búsqueda" icon={icon}>
-                    </Alert>)}
                     </Grid.Col>
-            </Grid>
-        </div>
+                    <Grid.Col span={{ base: 8, md: 8, lg: 10, xs: 7 }}>
+                        {experiencias.length != 0 ? (
+                            <ScrollArea type="auto" h={900} scrollbars="y">
+                                <Grid>
+                                    {experiencias.map((element) => {
+                                        return (<Grid.Col span={{ base: 12, md: 4, lg: 3, xs: 12, sm: 6 }} >
+                                            <Card onClick={() => { detalleExperiencia(element.id) }} style={{ cursor: 'pointer' }} shadow="sm" padding="lg" radius="md" withBorder>
+                                                <Card.Section>
+                                                    <Image
+                                                        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                                                        height={160}
+                                                        alt="Norway"
+                                                    />
+                                                </Card.Section>
 
+                                                <Group justify="space-between" mt="md" mb="xs">
+                                                    <Text fw={500}>{element.titulo}</Text>
+                                                </Group>
+
+                                                <Text size="sm" mt="md" c="dimmed">
+                                                    {element.descripcion}
+                                                </Text>
+
+                                                <Text size="md" mt="md" fw={700} >
+                                                    {element.precio} € DESDE/NOCHE
+                                                </Text>
+                                                <Group justify="flex-start" mt="md" mb="xs">
+                                                    <Badge ><IconBed style={{ width: rem(16), height: rem(16) }} />  {element.habitaciones}</Badge>
+                                                    {element.banios ? (
+                                                        <Badge ><IconBath style={{ width: rem(16), height: rem(16) }} />  {element.banios}</Badge>
+                                                    ) : (null)}
+                                                    <Badge ><IconLocation style={{ width: rem(16), height: rem(16) }} />  {element.localizacion}</Badge>
+
+                                                </Group>
+
+                                            </Card>
+                                        </Grid.Col>)
+                                    })}
+
+
+                                </Grid>
+
+                            </ScrollArea>
+                        ) : (<Alert variant="light" color="blue" title="No hay alojamientos disponibles para su búsqueda" icon={icon}>
+                        </Alert>)}
+                    </Grid.Col>
+                </Grid>
+            </div>
+
+            <Footer></Footer>
+        </>
     );
 }
 

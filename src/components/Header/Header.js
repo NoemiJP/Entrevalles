@@ -74,7 +74,7 @@ const Header = (props) => {
         <Group justify="space-between" align="center">
           <Group>
             <Link to="/">
-              <img src='/assets/logo.png' alt='link logotipo' style={{ cursor: 'pointer' }}></img></Link>
+              <img src='/assets/logo.png' alt='link logotipo'  style={{ cursor: 'pointer'}}></img></Link>
           </Group>
         </Group>
         <Group hiddenFrom="sm" justify="flex-end">
@@ -96,12 +96,12 @@ const Header = (props) => {
                 ACCESO
               </Link></Menu.Item>) : (null)}
               {user.nombre != null ? (<>
-                <Link to="/" className="menuItemLink">
+                <Link to="/bookings" className="menuItemLink">
                   <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
                     Mis reservas
                   </Menu.Item></Link>
 
-                <Link to="/" className="menuItemLink">
+                <Link to="/newpass" className="menuItemLink">
                   <Menu.Item leftSection={<IconSwitchHorizontal style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
                     Cambiar contraseña
                   </Menu.Item></Link>
@@ -143,7 +143,7 @@ const Header = (props) => {
             </Menu.Target>
             <Menu.Dropdown>
               <Menu.Label>Bienvenido {user.nombre}</Menu.Label>
-              <Link to="/" className="menuItemLink">
+              <Link to="/bookings" className="menuItemLink">
                 <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
                   Mis reservas
                 </Menu.Item></Link>
@@ -153,7 +153,7 @@ const Header = (props) => {
                   Cambiar contraseña
                 </Menu.Item></Link>
 
-              <Link to="/" className="menuItemLink">
+              <Link onClick={(e) => logout()} className="menuItemLink">
                 <Menu.Item leftSection={<IconLogout style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
                   Cerrar sesión
                 </Menu.Item></Link>

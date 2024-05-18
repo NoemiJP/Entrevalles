@@ -1,6 +1,7 @@
 import Header from '../../components/Header/Header';
+import './NewPass.css';
 import React, { useState, useEffect } from 'react';
-import { BackgroundImage, Card, Image, Text, Badge, Button, Group, Grid, TextInput, PasswordInput, Box } from '@mantine/core';
+import { Container, BackgroundImage, Card, Image, Text, Badge, Button, Group, Grid, TextInput, PasswordInput, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Footer from '../../components/Footer/Footer';
 import { Calendar, DateInput } from '@mantine/dates';
@@ -14,8 +15,8 @@ function NewPass() {
         mode: 'uncontrolled',
         initialValues: {
             email: '',
-            nuevaContrasenya:'',
-            contrasenya:'',
+            nuevaContrasenya: '',
+            contrasenya: '',
         },
 
         validate: {
@@ -52,7 +53,7 @@ function NewPass() {
         },
     });
     const nueva = (values) => {
-        if(!(values.contrasenya == values.nuevaContrasenya)){
+        if (!(values.contrasenya == values.nuevaContrasenya)) {
             form.setFieldError('contrasenya', 'Las contraseñas no coinciden');
             return;
         }
@@ -75,7 +76,7 @@ function NewPass() {
                     if (response.status === 404) {
                         form.setFieldError('email', 'El usuario no existe en el sistema');
                     }
-                } else{
+                } else {
                     navigate('/');
                 }
                 return response.json();
@@ -88,53 +89,57 @@ function NewPass() {
 
     return (
         <>
+
             <Header></Header>
+            <Container size="xxl" className="mainContainer body"  >
 
-            <BackgroundImage
-                src="./assets/login.jpg">
-
-                <Grid justify="center" align="center" >
-                    <Grid.Col span={{ base: 6 }} offset={3} mt="7%">
+                <Grid justify="center" align="center" overflow="hidden" >
+                    <Grid.Col span={{ base: 12 }} mt="7%">
                         <Card shadow="sm" radius="md" withBorder mb="7%" >
                             <form onSubmit={form.onSubmit(nueva)} >
-                                <Group direction="column" spacing="md">
+                                <Group direction="column" spacing="md" mb="md">
 
 
                                     <TextInput
                                         required
                                         size="md"
-                                        style={{ minWidth: "100%" }}
+                                        style={{ minWidth: "50vh" }}
                                         label="Email"
                                         placeholder="Email"
                                         radius="md"
                                         {...form.getInputProps('email')}></TextInput>
 
+                                </Group>
+                                <Group direction="column" spacing="md" mb="md">
                                     <PasswordInput
                                         required
                                         size="md"
-                                        style={{ minWidth: "100%" }}
+                                        style={{ minWidth: "50vh" }}
                                         label="Nueva contraseña"
                                         placeholder="Contraseña"
                                         radius="md"
                                         {...form.getInputProps('nuevaContrasenya')}></PasswordInput>
-
+                                </Group>
+                                <Group direction="column" spacing="md" mb="md">
                                     <PasswordInput
                                         required
                                         size="md"
-                                        style={{ minWidth: "100%" }}
+                                        style={{ minWidth: "50vh" }}
                                         label="Verificar contraseña"
                                         placeholder="Contraseña"
                                         radius="md"
                                         {...form.getInputProps('contrasenya')}></PasswordInput>
-
-                                    <Button type="submit" variant="filled">Nueva contraseña</Button>
+                                </Group>
+                                <Group spacing="md">
+                                    <Button type="submit" variant="filled" style={{ minWidth: "50vh" }}>Nueva contraseña</Button>
                                 </Group>
                             </form>
                         </Card>
                     </Grid.Col>
                     <Grid.Col span={{ base: 3 }}></Grid.Col>
                 </Grid>
-            </BackgroundImage>
+            </Container>
+
             <Footer></Footer>
         </>
     );

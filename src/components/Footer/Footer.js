@@ -1,6 +1,6 @@
 import './Footer.css';
 import { Anchor, Group, ActionIcon, rem, TextInput, Text } from '@mantine/core';
-import { IconBrandTwitter, IconBrandFacebook, IconBrandInstagram, IconCopyright } from '@tabler/icons-react';
+import { IconBrandLinkedin, IconBrandFacebook, IconBrandInstagram, IconCopyright } from '@tabler/icons-react';
 
 const links = [
     { link: '#', label: 'Contactar' },
@@ -12,7 +12,7 @@ const links = [
 export function Footer() {
     const items = links.map((link) => (
         <Anchor
-            c="#9fb7c7"
+            c="#ffffff"
             key={link.label}
             href={link.link}
             lh={1}
@@ -33,13 +33,13 @@ export function Footer() {
                 <Group className={links} >{items}</Group>
 
                 <Group gap="xs" justify="flex-end" wrap="nowrap">
-                    <ActionIcon size="lg" variant="default" radius="xl"  style={{ backgroundColor: '#355d75', color: '#9fb7c7' }}>
-                        <IconBrandTwitter style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
+                    <ActionIcon size="lg" variant="default" radius="xl"  style={{ backgroundColor: '#355d75', color: '#ffffff' }}>
+                        < IconBrandLinkedin style={{ width: rem(24), height: rem(24) }} stroke={1.5} />
                     </ActionIcon>
-                    <ActionIcon size="lg" variant="default" radius="xl" style={{ backgroundColor: '#355d75', color: '#9fb7c7' }}>
+                    <ActionIcon size="lg" variant="default" radius="xl" style={{ backgroundColor: '#355d75', color: '#ffffff' }}>
                         <IconBrandFacebook style={{ width: rem(24), height: rem(24) }} stroke={1.5} />
                     </ActionIcon>
-                    <ActionIcon size="lg" variant="default" radius="xl" style={{ backgroundColor: '#355d75', color: '#9fb7c7' }}>
+                    <ActionIcon size="lg" variant="default" radius="xl" style={{ backgroundColor: '#355d75', color: '#ffffff' }}>
                         <IconBrandInstagram style={{ width: rem(24), height: rem(24) }} stroke={1.5} />
                     </ActionIcon>
                 </Group>

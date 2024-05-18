@@ -13,6 +13,7 @@ import CarouselExperience from "./components/CarouselExperience";
 import { Calendar } from '@mantine/dates';
 import dayjs from 'dayjs';
 import FormularioReserva from "./components/FormularioReserva";
+import Footer from "../../components/Footer/Footer";
 
 const ExperienciesDetail = () => {
     let params = useParams();
@@ -76,6 +77,7 @@ const ExperienciesDetail = () => {
                     </Grid>
                 </>
             ) : (null)}
+            <Footer/>
         </>)
 };
 export default ExperienciesDetail;

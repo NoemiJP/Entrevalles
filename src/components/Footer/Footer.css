@@ -1,11 +1,11 @@
 .footer {
   background-color: #355d75;
   margin-top: rem(120px);
-  border-top: rem(1px) solid
+  border-top: rem(1px) solid;
 }
 
 .inner {
-  color: #9fb7c7;
+  color: #ffffff;
   display: flex;
   justify-content: space-between;
   align-items: center;

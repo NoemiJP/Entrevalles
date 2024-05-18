@@ -1,13 +1,9 @@
-.mainContainer {
+.mainContainerPayment {
     overflow-y: hidden;
     height: 80vh;
 }
 
-.body {
-    background-image: url("/public/assets/login.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.payment {
     display: flex;
     justify-content: center;
     align-items: center;

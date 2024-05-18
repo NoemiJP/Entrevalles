@@ -1,5 +1,5 @@
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Card, Image, NumberInput, Text, Badge, Button, Group, Title } from "@mantine/core";
 import { React, useEffect, useState } from "react";
 import { useUser } from '../../../components/Usuario/UserProvider';
@@ -7,7 +7,7 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
     const stripe = useStripe();
     const elements = useElements();
     const { user, updateUser } = useUser();
-
+    const navigate = useNavigate();
     let params = useParams();
     const [reserva, setReserva] = useState();
     const realizarReserva = async () => {
@@ -47,7 +47,7 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
                     //`Elements` instance that was used to create the Payment Element
                     elements,
                     confirmParams: {
-                        return_url: "http://localhost:3000/confirmPayment/" + data.id,
+                        return_url: `${window.location.origin}/confirmPayment/${data.id}/${user.id}`,
                     },
                 });
 
@@ -55,9 +55,6 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
                     // Show error to your customer (for example, payment details incomplete)
                     console.log(result.error.message);
                 } else {
-                    // Your customer will be redirected to your `return_url`. For some payment
-                    // methods like iDEAL, your customer will be redirected to an intermediate
-                    // site first to authorize the payment, then redirected to the `return_url`.
                 }
             })
             .catch(error => console.error('Error fetching users:', error));
