@@ -1,10 +1,10 @@
-import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
+import { CardElement, useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Card, Image, NumberInput, Text, Badge, Button, Group, Title } from "@mantine/core";
 import { React, useEffect, useState } from "react";
 import { useUser } from '../../../components/Usuario/UserProvider';
 import { url } from '../../../utils';
-const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fechaFin }) => {
+const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fechaFin,clientSecret }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { user, updateUser } = useUser();
@@ -13,6 +13,24 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
     const [reserva, setReserva] = useState();
     const realizarReserva = async () => {
 
+    };
+    const stripePayment = async (data) => {
+        const { error } = stripe.confirmPayment({
+            //`Elements` instance that was used to create the Payment Element
+            elements,
+            confirmParams: {
+                return_url: `${window.location.origin}`,
+            },
+            redirect: 'if_required' 
+        }).then(function(result) {
+            if (result.error) {
+                // Show error to your customer (for example, payment details incomplete)
+                console.log(result.error.message);
+            } else {
+                console.log(result);
+                navigate(`/confirmPayment/${data.id}/${user.id}?payment_intent=${result.paymentIntent.id}`);
+            }
+          });
     };
     const handleSubmit = async (event) => {
         // We don't want to let default form submission happen here,
@@ -44,19 +62,10 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
                     return;
                 }
 
-                const result = stripe.confirmPayment({
-                    //`Elements` instance that was used to create the Payment Element
-                    elements,
-                    confirmParams: {
-                        return_url: `${window.location.origin}/confirmPayment/${data.id}/${user.id}`,
-                    },
-                });
+                stripePayment(data);
 
-                if (result.error) {
-                    // Show error to your customer (for example, payment details incomplete)
-                    console.log(result.error.message);
-                } else {
-                }
+                
+
             })
             .catch(error => console.error('Error fetching users:', error));
     };

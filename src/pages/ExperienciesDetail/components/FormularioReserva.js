@@ -169,7 +169,7 @@ const FormularioReserva = ({ experiencia }) => {
                 <Group justify="space-between" mt="md" mb="xs" style={{minWidth: "100%"}}> <Text fw={700}>Precio Total</Text><Text fw={700}>{precioTotal} €</Text>
                 </Group> 
                 <Elements stripe={stripePromise} options={options}>
-                        <CheckoutForm id={experiencia.id} experiencia={experiencia} fechaInicio={fechaInicio} fechaFin={fechaFin} huespedes={huespedes} precioTotal={precioTotal}  />
+                        <CheckoutForm id={experiencia.id} experiencia={experiencia} fechaInicio={fechaInicio} fechaFin={fechaFin} huespedes={huespedes} precioTotal={precioTotal} clientSecret={options}  />
                     </Elements></>)
                 : (null)}
         </Card>
