@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Card, Image, NumberInput, Text, Badge, Button, Group, Title } from "@mantine/core";
 import { React, useEffect, useState } from "react";
 import { useUser } from '../../../components/Usuario/UserProvider';
+import { url } from '../../../utils';
 const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fechaFin }) => {
     const stripe = useStripe();
     const elements = useElements();
@@ -32,7 +33,7 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
 
             }
         };
-        fetch('/reservar', requestOptions)
+        fetch(`${url()}/reservar`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data);

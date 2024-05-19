@@ -10,6 +10,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm";
 import { useUser } from "../../../components/Usuario/UserProvider";
+import { url } from "../../../utils";
 
 const FormularioReserva = ({ experiencia }) => {
     const { user, updateUser } = useUser();
@@ -37,7 +38,7 @@ const FormularioReserva = ({ experiencia }) => {
 
             }
         };
-        fetch('/payment',requestOptions)
+        fetch(`${url}/payment`,requestOptions)
             .then(response => response.text())
             .then(data => {
                 console.log(data);

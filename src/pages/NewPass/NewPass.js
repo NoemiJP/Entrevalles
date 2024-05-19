@@ -7,6 +7,7 @@ import Footer from '../../components/Footer/Footer';
 import { Calendar, DateInput } from '@mantine/dates';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { url } from '../../utils';
 
 function NewPass() {
     const navigate = useNavigate();
@@ -70,7 +71,7 @@ function NewPass() {
                 nuevaContrasenya: values.nuevaContrasenya
             })
         };
-        fetch('/nueva', requestOptions)
+        fetch(`${url()}/nueva`, requestOptions)
             .then(response => {
                 if (!response.ok) {
                     if (response.status === 404) {

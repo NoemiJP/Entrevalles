@@ -9,6 +9,7 @@ import { TextInput,Autocomplete, rem } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { IconLocation,IconBrandInstagram,IconBrandFacebook } from '@tabler/icons-react';
 import { useInputState } from '@mantine/hooks';
+import { url } from '../../utils';
 function HomePage() {
     const icon = <IconLocation style={{ width: rem(16), height: rem(16) }} />;
     const theme = createTheme({
@@ -82,7 +83,7 @@ function HomePage() {
         navigate('/experiencies');
     }
     useEffect(() => {
-        fetch('/experiencias')
+        fetch(`${url()}/experiencias`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);

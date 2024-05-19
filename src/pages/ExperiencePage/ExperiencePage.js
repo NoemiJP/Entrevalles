@@ -8,7 +8,7 @@ import { Card, Image, Alert, Text, Badge, ScrollArea, Button, rem, useMantineThe
 import { IconLocation, IconBed, IconInfoCircle, IconBath } from '@tabler/icons-react';
 import { useInputState } from '@mantine/hooks';
 import Footer from '../../components/Footer/Footer';
-
+import { url } from '../../utils';
 function ExperiencePage() {
     const [experiencias, setExperiencias] = useState([]);
     const [localizacion, setLocalizacion] = useState();
@@ -29,7 +29,7 @@ function ExperiencePage() {
             },
             body: JSON.stringify(postData) // Convertir el objeto JavaScript a formato JSON
         };
-        fetch('/experiencias', requestOptions)
+        fetch(`${url()}/experiencias`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -52,7 +52,7 @@ function ExperiencePage() {
             },
             body: JSON.stringify(postData) // Convertir el objeto JavaScript a formato JSON
         };
-        fetch('/experiencias', requestOptions)
+        fetch(`${url()}/experiencias`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data);

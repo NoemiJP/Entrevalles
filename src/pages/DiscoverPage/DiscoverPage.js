@@ -4,14 +4,14 @@ import Footer from '../../components/Footer/Footer';
 import "./DiscoverPage.css";
 import { Grid, Skeleton, Container, Title, Text } from '@mantine/core';
 import { useParams } from 'react-router-dom';
-
+import { url } from '../../utils';
 
 function DiscoverPage() {
     const params = useParams();
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        fetch('/blogs')
+        fetch(`${url()}/blogs`)
             .then(response => response.json())
             .then(data => {
                 data.forEach(element => {

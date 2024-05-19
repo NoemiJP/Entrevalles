@@ -6,7 +6,7 @@ import Footer from '../../components/Footer/Footer';
 import { Calendar, DateInput } from '@mantine/dates';
 import { Link } from 'react-router-dom';
 import "./NewUser.css";
-
+import { url } from '../../utils';
 function NewUser() {
    
     const [errorLogin, setErrorLogin] = useState();
@@ -63,7 +63,7 @@ function NewUser() {
 
             }) // Convertir el objeto JavaScript a formato JSON
         };
-        fetch('/registro', requestOptions)
+        fetch(`${url}/registro`, requestOptions)
             .then(response => {
                 return response.json();
             })

@@ -14,12 +14,13 @@ import { Calendar } from '@mantine/dates';
 import dayjs from 'dayjs';
 import FormularioReserva from "./components/FormularioReserva";
 import Footer from "../../components/Footer/Footer";
+import { url } from "../../utils";
 
 const ExperienciesDetail = () => {
     let params = useParams();
     const [experiencia, setExperiencia] = useState();
     useEffect(() => {
-        fetch('/experiencias/' + params["id"])
+        fetch(`${url()}/experiencias/` + params["id"])
             .then(response => response.json())
             .then(data => {
                 console.log(data);

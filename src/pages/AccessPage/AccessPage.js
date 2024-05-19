@@ -7,7 +7,7 @@ import Footer from '../../components/Footer/Footer';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../components/Usuario/UserProvider';
 import { useNavigate } from 'react-router-dom';
-
+import { url } from '../../utils';
 
 function AccessPage() {
     const { user, updateUser } = useUser();
@@ -58,7 +58,7 @@ function AccessPage() {
                 contrasenya: values.contrasenya
             }) // Convertir el objeto JavaScript a formato JSON
         };
-        fetch('/login', requestOptions)
+        fetch(`${url()}/login`, requestOptions)
             .then(response => {
                 if (!response.ok) {
                     if (response.status === 401) {

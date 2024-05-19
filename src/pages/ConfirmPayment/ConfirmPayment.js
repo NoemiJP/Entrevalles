@@ -6,7 +6,7 @@ import { useUser } from "../../components/Usuario/UserProvider";
 import './ConfirmPayment.css';
 import { Container, rem, Card, Image, NumberInput, Text, Badge, Button, Group, Title, Grid, BackgroundImage } from "@mantine/core";
 import { IconArrowRight } from '@tabler/icons-react';
-
+import { url } from "../../utils";
 const ConfirmPayment = () => {
 
     let paramsUrl = useParams();
@@ -15,7 +15,7 @@ const ConfirmPayment = () => {
     const [paymentDetails, setPaymentDetails] = useState();
     const [reserva, setReserva] = useState();
     useEffect(() => {
-        fetch('/login/'  + paramsUrl["userId"])
+        fetch(`${url()}/login/`  + paramsUrl["userId"])
             .then(response => {
                 return response.json();
             })
@@ -24,14 +24,14 @@ const ConfirmPayment = () => {
                 updateUser(data);
             })
             .catch(error => console.error('Error login:', error));
-        fetch('/confirmPayment/' + params.get("payment_intent"))
+        fetch(`${url()}/confirmPayment/` + params.get("payment_intent"))
             .then(response => response.json())
             .then(data => {
                 console.log(data);
                 setPaymentDetails(data);
             })
             .catch(error => console.error('Error fetching users:', error));
-        fetch('/reserva/' + paramsUrl["reservaId"])
+        fetch(`${url()}/reserva/` + paramsUrl["reservaId"])
             .then(response => response.json())
             .then(data => {
                 console.log(data);
