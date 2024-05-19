@@ -38,7 +38,7 @@ const FormularioReserva = ({ experiencia }) => {
 
             }
         };
-        fetch(`${url}/payment`,requestOptions)
+        fetch(`${url()}/payment`,requestOptions)
             .then(response => response.text())
             .then(data => {
                 console.log(data);
