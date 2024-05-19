@@ -39,9 +39,12 @@ export function Footer() {
                     <ActionIcon size="lg" variant="default" radius="xl" style={{ backgroundColor: '#355d75', color: '#ffffff' }}>
                         <IconBrandFacebook style={{ width: rem(24), height: rem(24) }} stroke={1.5} />
                     </ActionIcon>
+
+                    <Anchor href="https://www.instagram.com/entrevallesymontanias/" target="_blank" rel="noopener noreferrer">
                     <ActionIcon size="lg" variant="default" radius="xl" style={{ backgroundColor: '#355d75', color: '#ffffff' }}>
                         <IconBrandInstagram style={{ width: rem(24), height: rem(24) }} stroke={1.5} />
                     </ActionIcon>
+                    </Anchor>
                 </Group>
             </div>
         </div>

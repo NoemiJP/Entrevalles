@@ -125,8 +125,7 @@ function ExperiencePage() {
                     </Grid.Col>
                     <Grid.Col span={{ base: 8, md: 8, lg: 10, xs: 7 }}>
                         {experiencias.length != 0 ? (
-                            <ScrollArea type="auto" h={900} scrollbars="y">
-                                <Grid>
+                                <Grid mb="md">
                                     {experiencias.map((element) => {
                                         return (<Grid.Col span={{ base: 12, md: 4, lg: 3, xs: 12, sm: 6 }} >
                                             <Card onClick={() => { detalleExperiencia(element.id) }} style={{ cursor: 'pointer' }} shadow="sm" padding="lg" radius="md" withBorder>
@@ -164,8 +163,6 @@ function ExperiencePage() {
 
 
                                 </Grid>
-
-                            </ScrollArea>
                         ) : (<Alert variant="light" color="blue" title="No hay alojamientos disponibles para su búsqueda" icon={icon}>
                         </Alert>)}
                     </Grid.Col>

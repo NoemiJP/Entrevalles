@@ -33,7 +33,7 @@ const ExperienciesDetail = () => {
             <Header></Header>
             {experiencia ? (
                 <>
-                    <Grid>
+                    <Grid mb="md">
                         <CarouselExperience experiencia={experiencia}></CarouselExperience>
                         <Grid.Col span={{ base: 7 }} >
                             <Tabs defaultValue="Equipamiento">

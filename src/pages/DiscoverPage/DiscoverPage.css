@@ -1,0 +1,38 @@
+.blogTitle {
+    font-size: 40px;
+    font-weight: bold;
+    color: #355D75; 
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
+.imageColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.roundedImage {
+    border-radius: 10px; 
+    width: 100%; 
+    height: auto; 
+    object-fit: cover;
+}
+
+.textColumn {
+    padding: 20px; 
+}
+
+.title{
+    color: #648FAA;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+
+}
+
+.text-align-justify {
+    text-align: justify;
+  }

@@ -74,7 +74,7 @@ const Header = (props) => {
         <Group justify="space-between" align="center">
           <Group>
             <Link to="/">
-              <img src='/assets/logo.png' alt='link logotipo'  style={{ cursor: 'pointer'}}></img></Link>
+              <img src='/assets/logo.png' alt='link logotipo'  style={{ cursor: 'pointer', width: '18.2vh', height: 'auto' }}></img></Link>
           </Group>
         </Group>
         <Group hiddenFrom="sm" justify="flex-end">
