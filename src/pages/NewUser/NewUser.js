@@ -4,12 +4,13 @@ import { BackgroundImage, Card,Container, Image, Text, Badge, Button, Group, Gri
 import { useForm } from '@mantine/form';
 import Footer from '../../components/Footer/Footer';
 import { Calendar, DateInput } from '@mantine/dates';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./NewUser.css";
 import { url } from '../../utils';
 function NewUser() {
    
     const [errorLogin, setErrorLogin] = useState();
+    const navigate = useNavigate();
     const form = useForm({
         mode: 'uncontrolled',
         initialValues: {
@@ -63,12 +64,13 @@ function NewUser() {
 
             }) // Convertir el objeto JavaScript a formato JSON
         };
-        fetch(`${url}/registro`, requestOptions)
+        fetch(`${url()}/registro`, requestOptions)
             .then(response => {
                 return response.json();
             })
             .then(data => {
                 console.log(data);
+                navigate("/");
             })
             .catch(error => console.error('Error registro:', error));
     };
