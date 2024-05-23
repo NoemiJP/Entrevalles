@@ -2,8 +2,8 @@ import { CardElement, useStripe, useElements, PaymentElement } from '@stripe/rea
 import { useNavigate, useParams } from 'react-router-dom';
 import { Card, Image, NumberInput, Text, Badge, Button, Group, Title } from "@mantine/core";
 import { React, useEffect, useState } from "react";
-import { useUser } from '../../../components/Usuario/UserProvider';
-import { url } from '../../../utils';
+import { useUser } from '../../../../components/Usuario/UserProvider';
+import { url } from '../../../../utils';
 const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fechaFin,clientSecret }) => {
     const stripe = useStripe();
     const elements = useElements();
@@ -28,7 +28,7 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
                 console.log(result.error.message);
             } else {
                 console.log(result);
-                navigate(`/confirmPayment/${data.id}/${user.id}?payment_intent=${result.paymentIntent.id}&tipo=alojamiento`);
+                navigate(`/confirmPayment/${data.id}/${user.id}?payment_intent=${result.paymentIntent.id}&tipo=actividad`);
             }
           });
     };
@@ -39,7 +39,7 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify({
-                experiencia: experiencia.id,
+                actividad: experiencia.id,
                 fechaInicio: fechaInicio,
                 fechaFin: fechaFin,
                 huespedesTotales: huespedes,
@@ -51,7 +51,7 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
 
             }
         };
-        fetch(`${url()}/reservar`, requestOptions)
+        fetch(`${url()}/reservaAct`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data);

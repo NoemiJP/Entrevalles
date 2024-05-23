@@ -25,7 +25,7 @@ const Header = (props) => {
   const links = [
     { link: '/', label: 'INICIO' },
     { link: '/digs', label: 'ALOJAMIENTOS' },
-    { link: '/experiencies', label: 'EXPERIENCIAS' },
+    { link: '/activities', label: 'EXPERIENCIAS' },
     { link: '/discover', label: 'DESCUBRE ASTURIAS' }
   ];
 
@@ -101,6 +101,11 @@ const Header = (props) => {
                     Mis reservas
                   </Menu.Item></Link>
 
+                  {user.rol!=null && user.rol == 'admin'?(<Link to="/admin" className="menuItemLink">
+                  <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
+                  Menú Administración
+                  </Menu.Item></Link>):(null)}
+
                 <Link to="/newpass" className="menuItemLink">
                   <Menu.Item leftSection={<IconSwitchHorizontal style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
                     Cambiar contraseña
@@ -147,6 +152,11 @@ const Header = (props) => {
                 <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
                   Mis reservas
                 </Menu.Item></Link>
+              
+                {user.rol!=null && user.rol == 'admin'?(<Link to="/admin" className="menuItemLink">
+                <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
+                  Menú Administración
+                </Menu.Item></Link>):(null)}
 
               <Link to="/newpass" className="menuItemLink">
                 <Menu.Item leftSection={<IconSwitchHorizontal style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>

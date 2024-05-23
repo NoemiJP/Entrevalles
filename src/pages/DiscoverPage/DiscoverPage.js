@@ -32,7 +32,7 @@ function DiscoverPage() {
         <>
             <Header></Header>
             {blogs ? (
-                <Container size='xxl' mb='md' mt='md' >
+                <Container size='xxl' mb='md' mt='md'>
                     <Title order={1} className="blogTitle" mb="md">Descubre Asturias</Title>
                     <Grid justify="center" align="center" gutter="md" overflow="hidden">
 

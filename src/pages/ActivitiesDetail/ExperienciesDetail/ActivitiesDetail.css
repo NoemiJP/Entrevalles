@@ -1,0 +1,15 @@
+.mantine-Tabs-tab{
+    width: 20%;
+}
+
+.mantine-Tabs-tabLabel{
+    font-size: 18px;
+}
+
+.mantine-Calendar-calendarHeader{
+    width: 100%;
+}
+
+.mantine-Calendar-day{
+    cursor: none;
+}

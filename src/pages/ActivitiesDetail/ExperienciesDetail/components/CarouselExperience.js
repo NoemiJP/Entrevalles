@@ -3,11 +3,10 @@ import { useParams } from 'react-router-dom';
 import { Carousel } from '@mantine/carousel';
 import { Grid, Image, Overlay, Text, Title, rem, Flex, Tabs } from "@mantine/core";
 import { IconBrandNordVpn } from '@tabler/icons-react';
-import "../ExperienciesDetail.css";
+import "../ActivitiesDetail.css";
 import { Calendar } from '@mantine/dates';
 import dayjs from 'dayjs';
 const CarouselExperience = ({ experiencia }) => {
-
     return (<>
         <div style={{ position: "absolute", zIndex: 200, marginTop: "18%", width: "100%" }}>
             <Flex
@@ -23,13 +22,15 @@ const CarouselExperience = ({ experiencia }) => {
             </Flex>
         </div>
         <Grid.Col span={{ base: 12 }} >
-          <Carousel slideSize="33.33%" height="100%" align="start" slideGap="xs" controlsOffset="md" loop>
-          {experiencia.imagenes.map(imagen => {
-            return (<Carousel.Slide><Image
-                src={`data:image/jpeg;base64,${imagen.imagen}`}
-                alt="Norway"
-            /></Carousel.Slide>)
-        })}
+            <Carousel slideSize="33.33%" height="100%" align="start" slideGap="xs" controlsOffset="md" loop>
+                {experiencia.imagenes.map(imagen => {
+                    return (<Carousel.Slide><Image
+                        h={450}
+                        w={800}
+                        src={`data:image/jpeg;base64,${imagen.imagen}`}
+                        alt="Norway"
+                    /></Carousel.Slide>)
+                })}
             </Carousel>
         </Grid.Col>
     </>);

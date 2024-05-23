@@ -9,6 +9,7 @@ import { IconLocation, IconBed, IconInfoCircle, IconBath } from '@tabler/icons-r
 import { useInputState } from '@mantine/hooks';
 import Footer from '../../components/Footer/Footer';
 import { url } from '../../utils';
+
 function ExperiencePage() {
     const [experiencias, setExperiencias] = useState([]);
     const [localizacion, setLocalizacion] = useState();
@@ -32,7 +33,6 @@ function ExperiencePage() {
         fetch(`${url()}/experiencias`, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setExperiencias(data);
             })
             .catch(error => console.error('Error fetching users:', error));
@@ -55,13 +55,11 @@ function ExperiencePage() {
         fetch(`${url()}/experiencias`, requestOptions)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setExperiencias(data);
             })
             .catch(error => console.error('Error fetching users:', error));
     }, [localizacion, equipamiento, alojamiento]);
     const detalleExperiencia = (id) => {
-        console.log('Clickada', id);
         navigate('/experiencies/' + id);
     }
     return (
@@ -69,7 +67,7 @@ function ExperiencePage() {
             <Header></Header>
 
             <div className='container-fluid contenedor'>
-                <Grid mt="xl">
+               {experiencias?( <Grid mt="xl">
                     <Grid.Col span={{ base: 4, md: 4, lg: 2, xs: 5 }} >
                         <Grid>
                             <Grid.Col span={{ base: 4, md: 3, lg: 6, xs: 6, sm: 5 }} >
@@ -127,14 +125,14 @@ function ExperiencePage() {
                         {experiencias.length != 0 ? (
                                 <Grid mb="md">
                                     {experiencias.map((element) => {
-                                        return (<Grid.Col span={{ base: 12, md: 4, lg: 3, xs: 12, sm: 6 }} >
+                                        return (<Grid.Col span={{ base: 12, md: 4, lg: 3, xs: 12, sm: 6 }} key={element.id} >
                                             <Card onClick={() => { detalleExperiencia(element.id) }} style={{ cursor: 'pointer' }} shadow="sm" padding="lg" radius="md" withBorder>
                                                 <Card.Section>
-                                                    <Image
-                                                        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                                                   {element.imagenes.length>0?( <Image
+                                                        src={`data:image/jpeg;base64,${element.imagenes[0].imagen}`}
                                                         height={160}
                                                         alt="Norway"
-                                                    />
+                                                    />):(null)}
                                                 </Card.Section>
 
                                                 <Group justify="space-between" mt="md" mb="xs">
@@ -166,7 +164,7 @@ function ExperiencePage() {
                         ) : (<Alert variant="light" color="blue" title="No hay alojamientos disponibles para su búsqueda" icon={icon}>
                         </Alert>)}
                     </Grid.Col>
-                </Grid>
+                </Grid>):(null)}
             </div>
 
             <Footer></Footer>
