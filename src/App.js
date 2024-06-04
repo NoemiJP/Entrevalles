@@ -9,7 +9,7 @@ import NewUser from './pages/NewUser/NewUser';
 import NewPass from './pages/NewPass/NewPass';
 import ConfirmPayment from './pages/ConfirmPayment/ConfirmPayment';
 import { UserProvider } from './components/Usuario/UserProvider';
-import UserBookings from './pages/userBookings/UserBookings';
+import UserBookings from './pages/UserBookings/UserBookings';
 import ActivitiesPage from './pages/ActivitiesPage/ActivitiesPage';
 import ActivitiesDetail from './pages/ActivitiesDetail/ExperienciesDetail/ActivitiesDetail';
 import AdminPage from './pages/AdminPage/AdminPage';

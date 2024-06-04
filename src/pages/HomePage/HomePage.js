@@ -5,14 +5,21 @@ import { DateInput } from '@mantine/dates';
 import './HomePage.css';
 import { Button } from '@mantine/core';
 import { createTheme, MantineProvider } from '@mantine/core';
-import { TextInput,Autocomplete, rem } from '@mantine/core';
+import { Container, Title, TextInput, Autocomplete, rem, Combobox, ScrollArea,Grid, Input, InputBase } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-import { IconLocation,IconBrandInstagram,IconBrandFacebook } from '@tabler/icons-react';
+import { IconLocation, IconMountain, IconBrandInstagram, IconBrandFacebook } from '@tabler/icons-react';
 import { useInputState } from '@mantine/hooks';
+import { useCombobox } from "@mantine/core";
 import { url } from '../../utils';
 
 function HomePage() {
     const icon = <IconLocation style={{ width: rem(16), height: rem(16) }} />;
+    const iconTipo = <IconMountain style={{ width: rem(16), height: rem(16) }} />;
+    const combobox = useCombobox({
+        onDropdownClose: () => combobox.resetSelectedOption(),
+    });
+    const [tipoBusqueda, setTipoBusqueda] = useState();
+    const [tiposBusqueda, setTiposBusqueda] = useState(["Alojamientos", "Actividades"]);
     const theme = createTheme({});
     const [experiencias, setExperiencias] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -46,74 +53,84 @@ function HomePage() {
 
     const buscar = () => {
         console.log('Buscar clickado');
+        if(tipoBusqueda == "Alojamientos"){
+        navigate('/digs?destino=' + destino);
+        } else{
+            navigate('/activities?destino=' + destino); 
+        }
         console.log(destino);
     };
 
     const experienciasNavigate = () => {
-        navigate('/experiencies');
+        navigate('/digs');
     }
 
     return (
-        <div className='contenedor no-pad'>
+        <>
             <Header />
-            <div className="body no-pad">
-                <div className='centrado-vertical'>
-                    <div className='row'>
-                        <div className='col-12 d-flex justify-content-center'>
-                            <h1 className='titulo'>ENTRE VALLES Y MONTAÑAS</h1>
-                        </div>
-                        <div className='row pad'>
-                            <div className='col-3'>
+            <Container size="xxl"  className="mainContainer body"  >
+                        <Grid justify="center" align="center">
+                        <Grid.Col span={{ base: 12 }} >
+                        <Title order={1} align="center"  style={{ color:"white", fontFamily: "Raleway" }}>ENTRE VALLES Y MONTAÑAS</Title>
+                        </Grid.Col>
+                        <Grid.Col span={{ xs: 12, sm: 8, md: 6, lg: 4}} >
+                            <Combobox
+                            store={combobox}
+                            onOptionSubmit={(val) => {
+                                setTipoBusqueda(val);
+                                combobox.closeDropdown();
+                            }}
+                        >
+                            <Combobox.Target>
+                                <InputBase
+                                    component="button"
+                                    type="button"
+                                    leftSection={iconTipo}
+                                    size="md"
+                                    style={{  minWidth: "100%"}}
+                                    placeholder="Tipo de búsqueda"
+                                    radius="md"
+                                    pointer
+                                    rightSection={<Combobox.Chevron />}
+                                    rightSectionPointerEvents="none"
+                                    onClick={() => combobox.toggleDropdown()}
+                                >
+                                    {tipoBusqueda || <Input.Placeholder>Tipo de búsqueda</Input.Placeholder>}
+                                </InputBase>
+                            </Combobox.Target>
+
+                            <Combobox.Dropdown>
+                                <ScrollArea.Autosize type="scroll">
+                                    <Combobox.Options>{tiposBusqueda.map((item) => (
+                                        <Combobox.Option value={item} key={item}>
+                                            {item}
+                                        </Combobox.Option>
+                                    ))}</Combobox.Options>
+                                </ScrollArea.Autosize>
+                            </Combobox.Dropdown>
+                        </Combobox>
+                        </Grid.Col>
+                        <Grid.Col span={{ xs: 12, sm: 8, md: 6, lg: 4}}>
                                 <Autocomplete
                                     leftSectionPointerEvents="none"
                                     leftSection={icon}
                                     placeholder="Destino"
                                     radius="md"
                                     size="md"
+                                    pointer
                                     data={localidadesAsturias}
                                     value={destino}
                                     onChange={setDestino}
                                 />
-                            </div>
-                            <div className='col-2'>
-                                <DateInput
-                                    value={fechaInicio}
-                                    onChange={setFechaInicio}
-                                    radius="md"
-                                    size="md"
-                                    placeholder="Fecha Inicio"
-                                />
-                            </div>
-                            <div className='col-2'>
-                                <DateInput
-                                    value={fechaFin}
-                                    onChange={setFechaFin}
-                                    radius="md"
-                                    size="md"
-                                    placeholder="Fecha Fin"
-                                />
-                            </div>
-                            <div className='col-3'>
-                                <TextInput
-                                    placeholder="Personas"
-                                    radius="md"
-                                    size="md"
-                                />
-                            </div>
-                            <div className='col-2'>
-                                <Button variant="filled" color="#3a5265" size="md" radius="md" onClick={buscar}>Buscar</Button>
-                            </div>
-                        </div>
-                        <div className='row pad'>
-                            <div className='col-2 offset-5'>
-                                <input type="button" className='buscar redondo' value="Experiencias" onClick={experienciasNavigate} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </Grid.Col>
+                            <Grid.Col span={{xs: 12, sm: 8, md: 6, lg: 4}}>
+                                <Button variant="filled" color="#3a5265"  fullWidth size="md" radius="md" onClick={buscar}>Buscar</Button>
+                                </Grid.Col>
+                                </Grid>
+                    
+            </Container>
             <Footer />
-        </div>
+            </>
     );
 }
 

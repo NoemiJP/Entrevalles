@@ -24,6 +24,7 @@ const FormularioReserva = ({ experiencia }) => {
     const [huespedes, setHuespedes] = useState(0);
     const [dias, setDias] = useState(0);
     const [usuarioError,setUsuarioError] = useState("");
+    const [hayReserva,setHayReserva] = useState(false);
     const stripePromise = loadStripe('pk_test_51PFatYRxV1RVND84NS81925iyGjIsEdL10igwkgPlHcPwWWxBCxxm5eN9vnOqjp5fsg1FaY4nuFoSqNAAp9uu2jY002xmZtHtR');
     const [options,setOptions] = useState({clientSecret:null});
     useEffect(() => {
@@ -48,6 +49,19 @@ const FormularioReserva = ({ experiencia }) => {
             .catch(error => console.error('Error fetching users:', error));
         }
     }, [precioTotal]);
+    const hayReservaEntreFechas=()=> {
+        const inicio = new Date(fechaInicio);
+    const fin = new Date(fechaFin);
+    return experiencia.reservas.some(reserva => {
+        const inicioReserva = new Date(reserva.fechaInicio);
+        const finReserva = new Date(reserva.fechaFin);
+
+        // Verificar si las fechas de la reserva están entre las fechas dadas
+        return (inicioReserva >= inicio && inicioReserva <= fin) ||
+               (finReserva >= inicio && finReserva <= fin) ||
+               (inicioReserva <= inicio && finReserva >= fin);
+    });
+    }
     const buscar = () => {
         if(user.id == null){
             setUsuarioError("Debe iniciar sesión antes de reservar");
@@ -63,6 +77,13 @@ const FormularioReserva = ({ experiencia }) => {
         fechaFin.setDate(fechaFin.getDate() + 1);
         setFechaFin(fechaFin);
     }, []);
+
+    useEffect(() => {
+        let estaReservado = hayReservaEntreFechas();
+        console.log('Esta reservado',estaReservado);
+        setHayReserva(estaReservado)
+    }, [fechaInicio,fechaFin]);
+    
 
     const calcularDiferenciaFechas = (fecha1, fecha2) => {
 
@@ -158,9 +179,11 @@ const FormularioReserva = ({ experiencia }) => {
                 />
             </Group>
 
-            <Button color="blue" fullWidth mt="md" onClick={buscar} radius="md">
+            {hayReserva==false?(<Button color="blue"  fullWidth mt="md" onClick={buscar} radius="md">
                 Reservar
-            </Button>
+            </Button>):(<Button color="blue" disabled fullWidth mt="md" onClick={buscar} radius="md">
+                Reservar
+            </Button>)}
             {usuarioError?(<div>{usuarioError}</div>):(null)}
             {options.clientSecret != null ? (<>
                 <Group justify="space-between" mt="md" mb="xs">

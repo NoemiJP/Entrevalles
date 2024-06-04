@@ -9,18 +9,39 @@ import { IconLocation, IconBed, IconInfoCircle, IconBath } from '@tabler/icons-r
 import { useInputState } from '@mantine/hooks';
 import Footer from '../../components/Footer/Footer';
 import { url } from '../../utils';
+import { useSearchParams } from 'react-router-dom';
 
 function ExperiencePage() {
     const [experiencias, setExperiencias] = useState([]);
-    const [localizacion, setLocalizacion] = useState();
-    const [equipamiento, setEquipamiento] = useState();
-    const [alojamiento, setAlojamiento] = useState();
+    const [firstTime, setFirstTime] = useState(false);
+    const [filtros, setFiltros] = useState({
+        localizacion: [],
+        equipamiento: [],
+        alojamiento: [],
+    });
     const icon = <IconInfoCircle />;
     const navigate = useNavigate();
+    
+        const [searchParams] = useSearchParams();
+    const getDestino = () =>{
+            return searchParams.get('destino');
+    }
+    const handleFiltroChange = (tipo, value) => {
+        console.log('Handle Filtro');
+        setFiltros(prevFiltros => ({
+            ...prevFiltros,
+            [tipo]: value,
+        }));
+    };
     useEffect(() => {
+        console.log('Effect');
+        const destino = getDestino();
+        console.log('Destino',destino);
         const postData = {
+            localizacion: filtros.localizacion?.length > 0 ? filtros.localizacion : destino==null?null:[destino],
+            equipamiento: filtros.equipamiento?.length > 0 ? filtros.equipamiento : null,
+            alojamiento: filtros.alojamiento?.length > 0 ? filtros.alojamiento : null
         };
-
         // Configuración de la solicitud
         const requestOptions = {
             method: 'POST',
@@ -36,29 +57,7 @@ function ExperiencePage() {
                 setExperiencias(data);
             })
             .catch(error => console.error('Error fetching users:', error));
-    }, []);
-    useEffect(() => {
-        const postData = {
-            localizacion: localizacion?.length > 0 ? localizacion : null,
-            equipamiento: equipamiento?.length > 0 ? equipamiento : null,
-            alojamiento: alojamiento?.length > 0 ? alojamiento : null
-        };
-        // Configuración de la solicitud
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-                // Si la API requiere algún tipo de autenticación, puedes incluir las cabeceras correspondientes aquí
-            },
-            body: JSON.stringify(postData) // Convertir el objeto JavaScript a formato JSON
-        };
-        fetch(`${url()}/experiencias`, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                setExperiencias(data);
-            })
-            .catch(error => console.error('Error fetching users:', error));
-    }, [localizacion, equipamiento, alojamiento]);
+    }, [filtros]);
     const detalleExperiencia = (id) => {
         navigate('/experiencies/' + id);
     }
@@ -73,7 +72,7 @@ function ExperiencePage() {
                             <Grid.Col span={{ base: 4, md: 3, lg: 6, xs: 6, sm: 5 }} >
                                 <Checkbox.Group
                                     label='LOCALIDADES'
-                                    value={localizacion} onChange={setLocalizacion}
+                                    value={filtros.localizacion} onChange={(value) => handleFiltroChange('localizacion', value)}
                                 >
 
                                     <Group mt="xs">
@@ -89,7 +88,7 @@ function ExperiencePage() {
                             <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
                                 <Checkbox.Group
                                     label='EQUIPAMIENTO'
-                                    value={equipamiento} onChange={setEquipamiento}
+                                    value={filtros.equipamiento} onChange={(value) => handleFiltroChange('equipamiento', value)}
                                 >
                                     <Group mt="md">
                                         <Checkbox value="Piscina" label="Piscina" />
@@ -108,7 +107,7 @@ function ExperiencePage() {
                             <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
                                 <Checkbox.Group
                                     label='TIPO DE ALOJAMIENTO'
-                                    value={alojamiento} onChange={setAlojamiento}
+                                    value={filtros.alojamiento} onChange={(value) => handleFiltroChange('alojamiento', value)}
                                 >
                                     <Group mt="md">
                                         <Checkbox value="hotel" label="Hotel" />

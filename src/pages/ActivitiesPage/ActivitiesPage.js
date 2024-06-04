@@ -5,17 +5,22 @@ import { IconLocation, IconInfoCircle } from '@tabler/icons-react';
 import Footer from '../../components/Footer/Footer';
 import { url } from '../../utils';
 import Header from '../../components/Header/Header';
+import { useSearchParams } from 'react-router-dom';
 
 function ActivitiesPage() {
     const [actividades, setActividades] = useState([]);
     const [actividadesFiltradas, setActividadesFiltradas] = useState([]);
+    const [firstTime,setFirstTime] = useState(true);
     const [filtros, setFiltros] = useState({
         localizacion: [],
         tipo_actividad: [],
         tipo_alojamiento: [],
     });
-
+    const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const getDestino = () =>{
+        return searchParams.get('destino');
+};
     useEffect(() => {
         fetch(`${url()}/activities`)
             .then(response => response.json())
@@ -34,7 +39,12 @@ function ActivitiesPage() {
     };
 
     useEffect(() => {
-        console.log(filtros);
+        const destino = getDestino();
+        if(destino != null && firstTime){
+            console.log('Destino');
+            handleFiltroChange('localizacion',[destino]);
+            setFirstTime(false);
+        }
         setActividadesFiltradas(actividades.filter(actividad => {
             return (
                 filtros.localizacion.length === 0 || filtros.localizacion.includes(actividad.localizacion)
