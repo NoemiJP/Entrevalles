@@ -46,7 +46,7 @@ const InsertarExperiencia = () => {
     const [tipoActividad, setTipoActividad] = useState();
     const [tiposActividad, setTiposActividad] = useState(["Aire libre","Interior"]);
     const [tipoDeporte, setTipoDeporte] = useState();
-    const [tiposDeportes, setTiposDeportes] = useState(["Senderismo y Trekking","Ciclismo", "Escalada","Kayak y Canotaje","Deportes Acuáticos","Museos y Galerías de Arte","Cine o Teatro","Spas y Centros de Bienestar"]);
+    const [tiposDeportes, setTiposDeportes] = useState(["Montaña","Aventura", "Acuáticas","Aéreas","Tierra","Invierno","Spas"]);
     useEffect(() => {
         fetch(`${url()}/localidades`)
             .then(response => {
@@ -126,8 +126,8 @@ const InsertarExperiencia = () => {
                             required
                             size="md"
                             style={{ minWidth: "100%" }}
-                            label="Título del alojamiento"
-                            placeholder="Título del alojamiento"
+                            label="Título de la actividad"
+                            placeholder="Título de la actividad"
                             radius="md"
                             {...form.getInputProps('titulo')}></TextInput>
                     </Group>
@@ -136,7 +136,7 @@ const InsertarExperiencia = () => {
                             required
                             size="md"
                             style={{ minWidth: "100%" }}
-                            label="Descripción del alojamiento"
+                            label="Descripción de la actividad"
                             placeholder="Descripción breve"
                             radius="md"
                             {...form.getInputProps('descripcion')}></TextInput>
@@ -145,8 +145,8 @@ const InsertarExperiencia = () => {
                         <FileInput required
                             size="md"
                             style={{ minWidth: "100%" }}
-                            label="Imágenes del alojamiento"
-                            placeholder="Imágenes del alojamiento"
+                            label="Imágenes de la actividad"
+                            placeholder="Imágenes de la actividad"
                             radius="md"
                             multiple value={imagenes} onChange={setImagenes} />
                     </Group>
@@ -155,8 +155,8 @@ const InsertarExperiencia = () => {
                             required
                             size="md"
                             style={{ minWidth: "100%" }}
-                            label="Precio por noche"
-                            placeholder="Precio por noche"
+                            label="Precio de la actividad"
+                            placeholder="Precio de la actividad"
                             radius="md"
                             {...form.getInputProps('precio')}></NumberInput>
                     </Group>
@@ -170,7 +170,7 @@ const InsertarExperiencia = () => {
                             required
                             size="md"
                             style={{ minWidth: "100%" }}
-                            label="Información del alojamiento"
+                            label="Informaciónde la actividad"
                             placeholder="Información detallada"
                             radius="md"
                             {...form.getInputProps('informacion')}></TextInput>

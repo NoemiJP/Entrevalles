@@ -5,7 +5,7 @@ import { DateInput } from '@mantine/dates';
 import './HomePage.css';
 import { Button } from '@mantine/core';
 import { createTheme, MantineProvider } from '@mantine/core';
-import { Container, Title, TextInput, Autocomplete, rem, Combobox, ScrollArea,Grid, Input, InputBase } from '@mantine/core';
+import { BackgroundImage,Container, Title, TextInput, Autocomplete, rem, Combobox, ScrollArea,Grid, Input, InputBase } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { IconLocation, IconMountain, IconBrandInstagram, IconBrandFacebook } from '@tabler/icons-react';
 import { useInputState } from '@mantine/hooks';
@@ -68,6 +68,7 @@ function HomePage() {
     return (
         <>
             <Header />
+            
             <Container size="xxl"  className="mainContainer body"  >
                         <Grid justify="center" align="center">
                         <Grid.Col span={{ base: 12 }} >

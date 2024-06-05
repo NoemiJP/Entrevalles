@@ -66,7 +66,7 @@ function ExperiencePage() {
             <Header></Header>
 
             <div className='container-fluid contenedor'>
-               {experiencias?( <Grid mt="xl">
+               {experiencias?( <Grid mt="xl" mb="md">
                     <Grid.Col span={{ base: 4, md: 4, lg: 2, xs: 5 }} >
                         <Grid>
                             <Grid.Col span={{ base: 4, md: 3, lg: 6, xs: 6, sm: 5 }} >
@@ -76,17 +76,22 @@ function ExperiencePage() {
                                 >
 
                                     <Group mt="xs">
-                                        <Checkbox value="Langreo" label="Langreo" />
-                                        <Checkbox value="Mieres" label="Mieres" />
-                                        <Checkbox value="Laviana" label="Laviana" />
+                                        <Checkbox value="Oviedo" label="Oviedo" />
+                                        <Checkbox value="Cudillero" label="Cudillero" />
+                                        <Checkbox value="Castrillón" label="Castrillón" />
                                         <Checkbox value="Gijon" label="Gijón" />
+                                        <Checkbox value="Caravia" label="Caravia" />
+                                        <Checkbox value="Ribadedeva" label="Ribadedeva" />
+                                        <Checkbox value="Villaviciosa" label="Villaviciosa" />
+                                        <Checkbox value="Llanes" label="Llanes" />
+                                        <Checkbox value="Avilés" label="Avilés" />
                                     </Group>
                                 </Checkbox.Group>
                             </Grid.Col>
                         </Grid>
                         <Grid>
                             <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
-                                <Checkbox.Group
+                                <Checkbox.Group mt="md"
                                     label='EQUIPAMIENTO'
                                     value={filtros.equipamiento} onChange={(value) => handleFiltroChange('equipamiento', value)}
                                 >
@@ -105,15 +110,15 @@ function ExperiencePage() {
 
                         <Grid>
                             <Grid.Col span={{ base: 4, md: 4, lg: 6, xs: 6, sm: 5 }} >
-                                <Checkbox.Group
+                                <Checkbox.Group mt="md"
                                     label='TIPO DE ALOJAMIENTO'
                                     value={filtros.alojamiento} onChange={(value) => handleFiltroChange('alojamiento', value)}
                                 >
                                     <Group mt="md">
-                                        <Checkbox value="hotel" label="Hotel" />
-                                        <Checkbox value="camping" label="Camping" />
-                                        <Checkbox value="casa" label="Casa" />
-                                        <Checkbox value="apartamento" label="Apartamento" />
+                                        <Checkbox value="Hotel" label="Hotel" />
+                                        <Checkbox value="Albergue" label="Albergue" />
+                                        <Checkbox value="Casa" label="Casa" />
+                                        <Checkbox value="Apartamento" label="Apartamento" />
                                     </Group>
                                 </Checkbox.Group>
                             </Grid.Col>

@@ -1,4 +1,24 @@
-.logo {
+.mainContainer {
+  overflow-y: hidden;
+  width: 100vh;
+}
+
+.body {
+  background-image: url("/public/assets/principal.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+/*.logo {
   width: 30%;
 }
 
@@ -9,8 +29,14 @@
   flex-direction: column;
 }
 
-.body {
-  background-image: url("/public/assets/asturias.webp");
+.mainContainer {
+  overflow-y: hidden;
+  height: 80vh;
+}
+
+
+.bodyHome{
+  background-image: url("/public/assets/portada.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -79,3 +105,4 @@
 .pad {
   padding-top: 3%;
 }
+*/
