@@ -179,9 +179,9 @@ const FormularioReserva = ({ experiencia }) => {
                 />
             </Group>
 
-            {hayReserva==false?(<Button color="blue"  fullWidth mt="md" onClick={buscar} radius="md">
+            {hayReserva==false?(<Button color="myColor"  fullWidth mt="md" onClick={buscar} radius="md">
                 Reservar
-            </Button>):(<Button color="blue" disabled fullWidth mt="md" onClick={buscar} radius="md">
+            </Button>):(<Button color="myColor" disabled fullWidth mt="md" onClick={buscar} radius="md">
                 Reservar
             </Button>)}
             {usuarioError?(<div>{usuarioError}</div>):(null)}

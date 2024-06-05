@@ -19,6 +19,7 @@ import { url } from "../../utils";
 const ExperienciesDetail = () => {
     let params = useParams();
     const [experiencia, setExperiencia] = useState();
+    
     useEffect(() => {
         fetch(`${url()}/experiencias/` + params["id"])
             .then(response => response.json())
@@ -37,13 +38,10 @@ const ExperienciesDetail = () => {
                     <Grid mb="md">
                         <CarouselExperience experiencia={experiencia}></CarouselExperience>
                         <Grid.Col span={{ base: 7 }} >
-                            <Tabs defaultValue="Equipamiento">
+                            <Tabs defaultValue="Equipamiento" color="myColor">
                                 <Tabs.List justify="center" style={{ minWidth: "180%" }}>
                                     <Tabs.Tab value="Equipamiento">
                                         Equipamiento
-                                    </Tabs.Tab>
-                                    <Tabs.Tab value="Localizacion" >
-                                        Localización
                                     </Tabs.Tab>
                                     <Tabs.Tab value="Normas" >
                                         Normas
@@ -58,7 +56,7 @@ const ExperienciesDetail = () => {
                                 </Tabs.Panel>
 
                                 <Tabs.Panel value="Localizacion">
-                                    <Localizacion experiencia={experiencia}></Localizacion>
+                                    <Localizacion></Localizacion>
                                 </Tabs.Panel>
 
                                 <Tabs.Panel value="Normas">

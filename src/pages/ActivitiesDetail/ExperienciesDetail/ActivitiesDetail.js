@@ -37,15 +37,15 @@ const ActivitiesDetail = () => {
                     <Grid mb="md">
                         <CarouselExperience experiencia={experiencia}></CarouselExperience>
                         <Grid.Col span={{ base: 7 }} >
-                            <Tabs defaultValue="Equipamiento">
+                            <Tabs color="myColor" defaultValue="Equipamiento">
                                 <Tabs.List justify="center" style={{ minWidth: "180%" }}>
                                     <Tabs.Tab value="Equipamiento">
                                         Información
                                         
                                     </Tabs.Tab>
-                                    <Tabs.Tab value="Localizacion" >
+                                 {/*   <Tabs.Tab value="Localizacion" >
                                         Localización
-                                    </Tabs.Tab>
+            </Tabs.Tab>*/}
                                     <Tabs.Tab value="Calendario" >
                                         Reservas
                                     </Tabs.Tab>

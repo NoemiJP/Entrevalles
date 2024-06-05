@@ -125,7 +125,7 @@ function HomePage() {
                                 />
                             </Grid.Col>
                             <Grid.Col span={{xs: 12, sm: 8, md: 6, lg: 4}}>
-                                <Button variant="filled" color="#3a5265"  fullWidth size="md" radius="md" onClick={buscar}>Buscar</Button>
+                                <Button variant="filled" color="myColor"  fullWidth size="md" radius="md" onClick={buscar}>Buscar</Button>
                                 </Grid.Col>
                                 </Grid>
                     

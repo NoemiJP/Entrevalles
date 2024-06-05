@@ -16,7 +16,7 @@ const AdminPage = () => {
     <Container  size="xxl" className="mainContainer body2" >
         <Grid mb="md">
             <Grid.Col span={{ base: 12 }} >
-                <Tabs defaultValue="Alojamiento" >
+                <Tabs color="myColor" defaultValue="Alojamiento" >
                     <Tabs.List justify="center" >
                         <Tabs.Tab value="Alojamiento">
                             Insertar Alojamiento

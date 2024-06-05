@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useUser } from '../Usuario/UserProvider';
 import { useEffect, React, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import { IconLogout, IconHeart, IconStar, IconMessage, IconSettings, IconPlayerPause, IconTrash, IconSwitchHorizontal, IconChevronDown, } from '@tabler/icons-react';
+import { IconLogout, IconHeart, IconUser, IconStar, IconShieldLock, IconMessage, IconSettings, IconPlayerPause, IconTrash, IconSwitchHorizontal, IconChevronDown, } from '@tabler/icons-react';
 import { Container, Box, Avatar, UnstyledButton, Group, Text, Menu, Tabs, Burger, rem, useMantineTheme, } from '@mantine/core';
 
 
@@ -74,7 +74,7 @@ const Header = (props) => {
         <Group justify="space-between" align="center">
           <Group>
             <Link to="/">
-              <img src='/assets/logo.png' alt='link logotipo'  style={{ cursor: 'pointer', width: '18.2vh', height: 'auto' }}></img></Link>
+              <img src='/assets/logo.png' alt='link logotipo' style={{ cursor: 'pointer', width: '18.2vh', height: 'auto' }}></img></Link>
           </Group>
         </Group>
         <Group hiddenFrom="sm" justify="flex-end">
@@ -87,7 +87,7 @@ const Header = (props) => {
                 <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" color="#D9D9C1" />
               </Group>
             </Menu.Target>
-            <Menu.Dropdown style={{backgroundColor:"#355D75"}}>
+            <Menu.Dropdown style={{ backgroundColor: "#355D75" }}>
               {itemsMobile}
               {user.nombre == null ? (<Menu.Item><Link
                 to="/access"
@@ -101,10 +101,10 @@ const Header = (props) => {
                     Mis reservas
                   </Menu.Item></Link>
 
-                  {user.rol!=null && user.rol == 'admin'?(<Link to="/admin" className="menuItemLink">
-                  <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
-                  Menú Administración
-                  </Menu.Item></Link>):(null)}
+                {user.rol != null && user.rol == 'admin' ? (<Link to="/admin" className="menuItemLink">
+                  <Menu.Item leftSection={<IconSettings style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
+                    Menú Administración
+                  </Menu.Item></Link>) : (null)}
 
                 <Link to="/newpass" className="menuItemLink">
                   <Menu.Item leftSection={<IconSwitchHorizontal style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
@@ -138,8 +138,16 @@ const Header = (props) => {
             <Menu.Target>
               <UnstyledButton>
                 <Group gap={7}>
-                  <Avatar src={user.image} alt={user.name} radius="xl" size={32} />
+                  {user.rol === 'admin' ? (
+                    <IconShieldLock style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+                  ) : (
+                    <IconUser style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+                  )}
+                  <Text fw={500}>
+                    {user.nombre}
+                  </Text>
                   <IconChevronDown style={{ width: rem(12), height: rem(12) }} stroke={1.5} />
+
                 </Group>
                 <Text fw={500}>
                   {user.name}
@@ -152,11 +160,11 @@ const Header = (props) => {
                 <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
                   Mis reservas
                 </Menu.Item></Link>
-              
-                {user.rol!=null && user.rol == 'admin'?(<Link to="/admin" className="menuItemLink">
-                <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
+
+              {user.rol != null && user.rol == 'admin' ? (<Link to="/admin" className="menuItemLink">
+                <Menu.Item leftSection={<IconSettings style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
                   Menú Administración
-                </Menu.Item></Link>):(null)}
+                </Menu.Item></Link>) : (null)}
 
               <Link to="/newpass" className="menuItemLink">
                 <Menu.Item leftSection={<IconSwitchHorizontal style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>

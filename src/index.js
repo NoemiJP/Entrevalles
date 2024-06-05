@@ -8,30 +8,32 @@ import "@mantine/core/styles.css";
 import '@mantine/dates/styles.css';
 import '@mantine/carousel/styles.css';
 
-
-
-import { MantineProvider, createTheme, MantineColorsTuple } from '@mantine/core';
-import { UserProvider } from './components/Usuario/UserProvider';
-import { useMantineTheme } from '@mantine/core';
+import { MantineProvider, createTheme } from '@mantine/core';
 
 const customTheme = createTheme({
   colors: {
-    primaryColor: ['#355D75'],
-    secondaryColor:['#d9d9c1']
-  },
+    myColor: [
+      "#f1f6f9",
+      "#e4e9eb",
+      "#c3d1d9",
+      "#9fb7c7",
+      "#81a2b7",
+      "#6e94ae",
+      "#648faa",
+      "#537b95",
+      "#476d87",
+      "#365f77"
+    ]
+  }
 });
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-
     <MantineProvider theme={customTheme}>
-
-        <App />
+      <App />
     </MantineProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

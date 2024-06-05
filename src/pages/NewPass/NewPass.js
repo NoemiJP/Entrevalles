@@ -132,7 +132,7 @@ function NewPass() {
                                         {...form.getInputProps('contrasenya')}></PasswordInput>
                                 </Group>
                                 <Group spacing="md">
-                                    <Button type="submit" variant="filled" style={{ minWidth: "50vh" }}>Nueva contraseña</Button>
+                                    <Button type="submit" variant="filled" color="myColor" style={{ minWidth: "50vh" }}>Nueva contraseña</Button>
                                 </Group>
                             </form>
                         </Card>

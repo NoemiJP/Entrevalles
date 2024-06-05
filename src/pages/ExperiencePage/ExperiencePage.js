@@ -70,21 +70,21 @@ function ExperiencePage() {
                     <Grid.Col span={{ base: 4, md: 4, lg: 2, xs: 5 }} >
                         <Grid>
                             <Grid.Col span={{ base: 4, md: 3, lg: 6, xs: 6, sm: 5 }} >
-                                <Checkbox.Group
+                                <Checkbox.Group 
                                     label='LOCALIDADES'
                                     value={filtros.localizacion} onChange={(value) => handleFiltroChange('localizacion', value)}
                                 >
 
                                     <Group mt="xs">
-                                        <Checkbox value="Oviedo" label="Oviedo" />
-                                        <Checkbox value="Cudillero" label="Cudillero" />
-                                        <Checkbox value="Castrillón" label="Castrillón" />
-                                        <Checkbox value="Gijon" label="Gijón" />
-                                        <Checkbox value="Caravia" label="Caravia" />
-                                        <Checkbox value="Ribadedeva" label="Ribadedeva" />
-                                        <Checkbox value="Villaviciosa" label="Villaviciosa" />
-                                        <Checkbox value="Llanes" label="Llanes" />
-                                        <Checkbox value="Avilés" label="Avilés" />
+                                        <Checkbox color="myColor" value="Oviedo" label="Oviedo" />
+                                        <Checkbox color="myColor" value="Cudillero" label="Cudillero" />
+                                        <Checkbox color="myColor" value="Castrillón" label="Castrillón" />
+                                        <Checkbox color="myColor"value="Gijon" label="Gijón" />
+                                        <Checkbox color="myColor" value="Caravia" label="Caravia" />
+                                        <Checkbox color="myColor" value="Ribadedeva" label="Ribadedeva" />
+                                        <Checkbox color="myColor" value="Villaviciosa" label="Villaviciosa" />
+                                        <Checkbox color="myColor" value="Llanes" label="Llanes" />
+                                        <Checkbox color="myColor" value="Avilés" label="Avilés" />
                                     </Group>
                                 </Checkbox.Group>
                             </Grid.Col>
@@ -96,13 +96,13 @@ function ExperiencePage() {
                                     value={filtros.equipamiento} onChange={(value) => handleFiltroChange('equipamiento', value)}
                                 >
                                     <Group mt="md">
-                                        <Checkbox value="Piscina" label="Piscina" />
-                                        <Checkbox value="Ascensor" label="Ascensor" />
-                                        <Checkbox value="Aparcamiento" label="Aparcamiento" />
-                                        <Checkbox value="Aire acondicionado" label="Aire acondicionado" />
-                                        <Checkbox value="Aceptan animales" label="Aceptan animales" />
-                                        <Checkbox value="Vistas al mar" label="Vistas al mar" />
-                                        <Checkbox value="Vistas a la montaña" label="Vistas a la montaña" />
+                                        <Checkbox color="myColor" value="Piscina" label="Piscina" />
+                                        <Checkbox color="myColor" value="Ascensor" label="Ascensor" />
+                                        <Checkbox color="myColor" value="Aparcamiento" label="Aparcamiento" />
+                                        <Checkbox color="myColor" value="Aire acondicionado" label="Aire acondicionado" />
+                                        <Checkbox color="myColor" value="Aceptan animales" label="Aceptan animales" />
+                                        <Checkbox color="myColor" value="Vistas al mar" label="Vistas al mar" />
+                                        <Checkbox color="myColor" value="Vistas a la montaña" label="Vistas a la montaña" />
                                     </Group>
                                 </Checkbox.Group>
                             </Grid.Col>
@@ -115,10 +115,10 @@ function ExperiencePage() {
                                     value={filtros.alojamiento} onChange={(value) => handleFiltroChange('alojamiento', value)}
                                 >
                                     <Group mt="md">
-                                        <Checkbox value="Hotel" label="Hotel" />
-                                        <Checkbox value="Albergue" label="Albergue" />
-                                        <Checkbox value="Casa" label="Casa" />
-                                        <Checkbox value="Apartamento" label="Apartamento" />
+                                        <Checkbox color="myColor" value="Hotel" label="Hotel" />
+                                        <Checkbox color="myColor" value="Albergue" label="Albergue" />
+                                        <Checkbox color="myColor" value="Casa" label="Casa" />
+                                        <Checkbox color="myColor" value="Apartamento" label="Apartamento" />
                                     </Group>
                                 </Checkbox.Group>
                             </Grid.Col>
@@ -151,11 +151,11 @@ function ExperiencePage() {
                                                     {element.precio} € DESDE/NOCHE
                                                 </Text>
                                                 <Group justify="flex-start" mt="md" mb="xs">
-                                                    <Badge ><IconBed style={{ width: rem(16), height: rem(16) }} />  {element.habitaciones}</Badge>
+                                                    <Badge color="myColor"><IconBed style={{ width: rem(16), height: rem(16) }} />  {element.habitaciones}</Badge>
                                                     {element.banios ? (
-                                                        <Badge ><IconBath style={{ width: rem(16), height: rem(16) }} />  {element.banios}</Badge>
+                                                        <Badge color="myColor"><IconBath style={{ width: rem(16), height: rem(16) }} />  {element.banios}</Badge>
                                                     ) : (null)}
-                                                    <Badge ><IconLocation style={{ width: rem(16), height: rem(16) }} />  {element.localizacion}</Badge>
+                                                    <Badge color="myColor"><IconLocation style={{ width: rem(16), height: rem(16) }} />  {element.localizacion}</Badge>
 
                                                 </Group>
 
@@ -165,7 +165,7 @@ function ExperiencePage() {
 
 
                                 </Grid>
-                        ) : (<Alert variant="light" color="blue" title="No hay alojamientos disponibles para su búsqueda" icon={icon}>
+                        ) : (<Alert variant="light" color="myColor" title="No hay alojamientos disponibles para su búsqueda" icon={icon}>
                         </Alert>)}
                     </Grid.Col>
                 </Grid>):(null)}

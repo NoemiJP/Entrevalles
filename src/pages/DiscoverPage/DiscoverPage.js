@@ -47,7 +47,7 @@ function DiscoverPage() {
                                     </Grid.Col></>)
                             } else {
                                 return (<><Grid.Col span={{ base: 12, xs: 8 }} style={{ padding: '20px' }}>
-                                    <Title order={3} className="title">{element.titulo}</Title>
+                                    <Title order={3} className="title" >{element.titulo}</Title>
                                     <Text className="text-align-justify">{element.texto}</Text>
                                 </Grid.Col>
                                     <Grid.Col span={{ base: 12, xs: 4 }} className="imageColumn">

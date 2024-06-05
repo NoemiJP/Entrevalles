@@ -117,14 +117,14 @@ function AccessPage() {
 
                                     />
                                 </Group>
-                                <Group mt="md" mb="xs">
+                                <Group mt="md" mb="xs" >
                                 <Link fw={500} to="/newpass">¿Olvidaste la contraseña?</Link>
                                 </Group>
 
                                 {errorLogin ? (<Group mt="md" mb="xs">
                                     <Text fw={500}>{errorLogin}</Text>
                                 </Group>) : (null)}
-                                <Button color="blue" fullWidth mt="md" radius="md" type='submit'>
+                                <Button color="myColor" fullWidth mt="md" radius="md" type='submit'>
                                     Acceder
                                 </Button>
                                 <Group justify="center" mt="md" mb="xs">

@@ -298,7 +298,7 @@ const InsertarExperiencia = () => {
                 <Grid.Col span={{ base: 4 }}></Grid.Col>
                 <Grid.Col span={{ base: 4 }}>
             <Group spacing="md">
-                <Button type="submit" variant="filled" style={{ minWidth: "100%" }}>Insertar Actividad</Button>
+                <Button color="myColor" type="submit" variant="filled" style={{ minWidth: "100%" }}>Insertar Actividad</Button>
             </Group>
             </Grid.Col>
             <Grid.Col span={{ base: 4 }}></Grid.Col>

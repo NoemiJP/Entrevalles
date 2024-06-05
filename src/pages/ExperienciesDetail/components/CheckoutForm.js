@@ -72,7 +72,7 @@ const CheckoutForm = ({ id, precioTotal, experiencia, huespedes, fechaInicio, fe
     return (
         <form onSubmit={handleSubmit}>
             <PaymentElement />
-            <Button color="blue" fullWidth mt="md" radius="md" disabled={!stripe} type="submit">
+            <Button color="myColor" fullWidth mt="md" radius="md" disabled={!stripe} type="submit">
                 Pagar Reserva
             </Button>
         </form>
