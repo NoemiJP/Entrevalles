@@ -28,6 +28,8 @@ const CarouselExperience = ({ experiencia }) => {
           {experiencia.imagenes.map(imagen => {
             return (<Carousel.Slide><Image
                 src={`data:image/jpeg;base64,${imagen.imagen}`}
+                h={450}
+                        w={800}
                 alt="Norway"
             /></Carousel.Slide>)
         })}

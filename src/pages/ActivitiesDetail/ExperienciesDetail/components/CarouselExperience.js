@@ -8,7 +8,9 @@ import { Calendar } from '@mantine/dates';
 import dayjs from 'dayjs';
 const CarouselExperience = ({ experiencia }) => {
     return (<>
-        <div style={{ position: "absolute", zIndex: 200, marginTop: "18%", width: "100%" }}>
+    
+    <Grid.Col span={{ base: 12 }} style={{ position: "relative" }}>
+        <div style={{ position: "absolute", zIndex: 200, bottom: "5%", width: "100%"  }}>
             <Flex
                 mih={"90%"}
                 gap="md"
@@ -21,7 +23,6 @@ const CarouselExperience = ({ experiencia }) => {
                 <Text style={{ color: 'white', marginLeft: "19%" }} size="lg">{experiencia.localizacion}</Text>
             </Flex>
         </div>
-        <Grid.Col span={{ base: 12 }} >
             <Carousel slideSize="33.33%" height="100%" align="start" slideGap="xs" controlsOffset="md" loop>
                 {experiencia.imagenes.map(imagen => {
                     return (<Carousel.Slide><Image
