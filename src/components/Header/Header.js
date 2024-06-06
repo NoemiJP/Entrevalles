@@ -96,25 +96,32 @@ const Header = (props) => {
                 ACCESO
               </Link></Menu.Item>) : (null)}
               {user.nombre != null ? (<>
-                <Link to="/bookings" className="menuItemLink">
-                  <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
+                  <Menu.Item leftSection={<IconStar style={{ width: rem(16), height: rem(16),color:"#FFF" }} stroke={1.5} />}>
+                    
+                <Link to="/bookings" className="link">
                     Mis reservas
-                  </Menu.Item></Link>
+                    </Link>
+                  </Menu.Item>
 
-                {user.rol != null && user.rol == 'admin' ? (<Link to="/admin" className="menuItemLink">
-                  <Menu.Item leftSection={<IconSettings style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
+                {user.rol != null && user.rol == 'admin' ? (
+                  <Menu.Item leftSection={<IconSettings style={{ width: rem(16), height: rem(16),color:"#FFF" }} stroke={1.5} />}>
+                    <Link to="/admin" className="link">
                     Menú Administración
-                  </Menu.Item></Link>) : (null)}
+                    </Link>
+                  </Menu.Item>) : (null)}
 
-                <Link to="/newpass" className="menuItemLink">
-                  <Menu.Item leftSection={<IconSwitchHorizontal style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
+                <Menu.Item leftSection={<IconSwitchHorizontal style={{ width: rem(16), height: rem(16),color:"#FFF" }} stroke={1.5} />}>
+
+                  <Link to="/newpass" className="link">
                     Cambiar contraseña
-                  </Menu.Item></Link>
+                  </Link>
+                </Menu.Item>
 
-                <Link onClick={(e) => logout()} className="menuItemLink">
-                  <Menu.Item leftSection={<IconLogout style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}>
+                <Menu.Item leftSection={<IconLogout style={{ width: rem(16), height: rem(16),color:"#FFF" }} stroke={1.5} />}>
+                  <Link onClick={(e) => logout()} className="link">
                     Cerrar sesión
-                  </Menu.Item></Link></>) : (null)}
+                  </Link>
+                </Menu.Item></>) : (null)}
             </Menu.Dropdown >
           </Menu>
         </Group>

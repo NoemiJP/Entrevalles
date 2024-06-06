@@ -9,10 +9,10 @@ import NewUser from './pages/NewUser/NewUser';
 import NewPass from './pages/NewPass/NewPass';
 import ConfirmPayment from './pages/ConfirmPayment/ConfirmPayment';
 import { UserProvider } from './components/Usuario/UserProvider';
-import UserBookings from './pages/UserBookings/UserBookings';
 import ActivitiesPage from './pages/ActivitiesPage/ActivitiesPage';
 import ActivitiesDetail from './pages/ActivitiesDetail/ExperienciesDetail/ActivitiesDetail';
 import AdminPage from './pages/AdminPage/AdminPage';
+import Bookings from './pages/bookings/Bookings';
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/access" element={<AccessPage/>} />
         <Route exact path="/newuser" element={<NewUser/>} />
         <Route exact path="/newpass" element={<NewPass/>} />
-        <Route exact path="/bookings" element={<UserBookings/>} />
+        <Route exact path="/bookings" element={<Bookings/>} />
         <Route exact path="/confirmPayment/:reservaId/:userId" element={<ConfirmPayment/>} />
         <Route exact path="/admin" element={<AdminPage/>} />
       </Routes>

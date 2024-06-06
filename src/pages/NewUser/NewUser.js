@@ -109,7 +109,7 @@ function NewUser() {
             ) : (null)}
             <Container size="xxl" className="mainContainerUser bodyUser"  >
                 <Grid justify="center" align="center" >
-                    <Grid.Col span={{ base: 6 }} offset={3}>
+                    <Grid.Col span={{ lg:6,xl:6,md: 6,xs:12,sm:12 }} offset={{lg:3,xl:3,md:3,xs:0,sm:0}}>
                         <Card shadow="sm" radius="md" withBorder mt="md" mb="md">
                             <form onSubmit={form.onSubmit(registro)} >
                                 <Group direction="column" spacing="md" mb="md">
