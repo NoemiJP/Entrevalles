@@ -33,7 +33,7 @@ function DiscoverPage() {
             <Header></Header>
             {blogs ? (
                 <Container size='xxl' mb='md' mt='md'>
-                    <Title order={1} className="blogTitle" mb="md">Descubre Asturias</Title>
+                    <Title order={1} className="blogTitle" mb="md">Principado de Asturias</Title>
                     <Grid justify="center" align="center" gutter="md" overflow="hidden">
 
                         {blogs.map((element, index) => {

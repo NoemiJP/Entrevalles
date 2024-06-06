@@ -69,10 +69,10 @@ function HomePage() {
         <>
             <Header />
             
-            <Container size="xxl"  className="mainContainer body"  >
+            <Container size="xxl"  className="mainContainerHome bodyHome"  >
                         <Grid justify="center" align="center">
                         <Grid.Col span={{ base: 12 }} >
-                        <Title order={1} align="center"  style={{ color:"white", fontFamily: "Raleway" }}>ENTRE VALLES Y MONTAÑAS</Title>
+                        <Title order={1} align="center"  className="titleHome">ENTRE VALLES Y MONTAÑAS</Title>
                         </Grid.Col>
                         <Grid.Col span={{ xs: 12, sm: 8, md: 6, lg: 4}} >
                             <Combobox

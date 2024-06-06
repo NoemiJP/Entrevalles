@@ -83,7 +83,7 @@ function AccessPage() {
        <>
             <Header></Header>
 
-            <Container size="xxl"  className="mainContainer body"  >
+            <Container size="xxl"  className="mainContainerPass bodyPass"  >
                 <Grid justify="center" align="center">
                     <Grid.Col span={{ base: 12 }} mt="7%" >
                         <Card  shadow="sm" radius="md" withBorder mb="7%" >
@@ -128,7 +128,7 @@ function AccessPage() {
                                     Acceder
                                 </Button>
                                 <Group justify="center" mt="md" mb="xs">
-                                    <Text fw={500}>¿Aún no tienes cuenta? <Link fw={500} to="/newuser">Registrate</Link></Text>
+                                    <Text fw={500} style={{color:"#476d87"}}>¿Aún no tienes cuenta? <Link fw={500} to="/newuser">Regístrate</Link></Text>
                                 </Group>
                             </form>
                            

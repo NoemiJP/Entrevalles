@@ -1,9 +1,9 @@
-.mainContainer {
+.mainContainerPass {
     overflow-y: hidden;
     height: 80vh;
 }
 
-.body {
+.bodyPass {
     background-image: url("/public/assets/login.webp");
     background-size: cover;
     background-repeat: no-repeat;

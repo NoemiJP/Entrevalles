@@ -1,16 +1,21 @@
 import Header from '../../components/Header/Header';
 import React, { useState, useEffect } from 'react';
-import { BackgroundImage, Card,Container, Image, Text, Badge, Button, Group, Grid, TextInput, PasswordInput, Box } from '@mantine/core';
+import { BackgroundImage, Alert, Card, Container, Image, Text, Badge, Button, Group, Grid, TextInput, PasswordInput, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import Footer from '../../components/Footer/Footer';
 import { Calendar, DateInput } from '@mantine/dates';
 import { Link, useNavigate } from 'react-router-dom';
 import "./NewUser.css";
 import { url } from '../../utils';
+import { IconAlertCircle, IconInfoCircle } from '@tabler/icons-react';
+
+
+
 function NewUser() {
-   
+
     const [errorLogin, setErrorLogin] = useState();
     const navigate = useNavigate();
+    const [showAlert, setShowAlert] = useState(false);
     const form = useForm({
         mode: 'uncontrolled',
         initialValues: {
@@ -30,7 +35,7 @@ function NewUser() {
                 }
                 return null;
             },
-            contrasenya: (value) => {
+            contrasenya: (value, values) => {
                 if (value.length < 8) {
                     return 'La contraseña debe tener al menos 8 caracteres';
                 }
@@ -40,9 +45,25 @@ function NewUser() {
                 if (!/[A-Z]/.test(value)) {
                     return 'La contraseña debe contener al menos una letra mayúscula';
                 }
+                if (value !== values.confirmarContrasenya) {
+                    return 'Las contraseñas no coinciden';
+                }
                 return null; // La contraseña es válida
+            },
+            confirmarContrasenya: (value, values) => {
+                if (value !== values.contrasenya) {
+                    return 'Las contraseñas no coinciden';
+                }
+                return null;
+            },
+            telefono: (value) => {
+                if (!/^\d{9}$/.test(value)) {
+                    return 'El número de teléfono debe tener 10 dígitos';
+                }
+                return null;
             }
-        },
+        }
+
     });
     const registro = (values) => {
         console.log(values);
@@ -70,7 +91,10 @@ function NewUser() {
             })
             .then(data => {
                 console.log(data);
-                navigate("/");
+                setShowAlert(true);
+                setTimeout(() => {
+                    navigate("/access");
+                }, 2000); // Esperar 2 segundos antes de redirigir
             })
             .catch(error => console.error('Error registro:', error));
     };
@@ -78,10 +102,15 @@ function NewUser() {
     return (
         <>
             <Header></Header>
-            <Container  size="xxl" className="mainContainer body"  >
+            {showAlert ? (
+
+                <Alert variant="light" color="myColor" title="Registro exitoso" icon={<IconInfoCircle />}></Alert>
+
+            ) : (null)}
+            <Container size="xxl" className="mainContainerUser bodyUser"  >
                 <Grid justify="center" align="center" >
                     <Grid.Col span={{ base: 6 }} offset={3}>
-                        <Card shadow="sm" radius="md" withBorder>
+                        <Card shadow="sm" radius="md" withBorder mt="md" mb="md">
                             <form onSubmit={form.onSubmit(registro)} >
                                 <Group direction="column" spacing="md" mb="md">
 
@@ -130,16 +159,26 @@ function NewUser() {
                                         radius="md"
                                         {...form.getInputProps('email')}></TextInput>
 
-                                    <TextInput
+                                    <PasswordInput
                                         required
                                         size="md"
                                         style={{ minWidth: "100%" }}
                                         label="Contraseña"
                                         placeholder="Contraseña"
                                         radius="md"
-                                        {...form.getInputProps('contrasenya')}></TextInput>
+                                        {...form.getInputProps('contrasenya')}></PasswordInput>
 
-<DateInput
+                                    <PasswordInput
+                                        required
+                                        size="md"
+                                        style={{ minWidth: "100%" }}
+                                        label="Confirmar Contraseña"
+                                        placeholder="Confirmar Contraseña"
+                                        radius="md"
+                                        {...form.getInputProps('confirmarContrasenya')}
+                                    />
+
+                                    <DateInput
                                         required
                                         size="md"
                                         style={{ minWidth: "100%" }}
@@ -147,18 +186,18 @@ function NewUser() {
                                         placeholder="Fecha de nacimiento"
                                         radius="md"
                                         {...form.getInputProps('fechaNacimiento')}
-                />
-                                    
+                                    />
+
                                 </Group>
                                 <Group spacing="md">
-                                <Button type="submit" variant="filled" style={{ minWidth: "100%" }}>Registrarse</Button>
+                                    <Button color="myColor" type="submit" variant="filled" style={{ minWidth: "100%" }}>Registrarse</Button>
                                 </Group>
                             </form>
                         </Card>
                     </Grid.Col>
                     <Grid.Col span={{ base: 3 }}></Grid.Col>
                 </Grid>
-                </Container>
+            </Container>
             <Footer></Footer>
         </>
     );

@@ -1,23 +1,17 @@
-.mainContainer {
-    overflow-y: hidden;
-    height: 80vh;
-}
 
-.body {
-    background-image: url("/public/assets/login.jpg");
+.bodyUser {
+    background-image: url("/public/assets/travel.webp");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
     width: 100%;
     margin: 0;
     padding: 0;
   }
 
   .body2 {
-    height: 80vh;
     width: 100%;
   }
