@@ -19,7 +19,7 @@ function ExperiencePage() {
         equipamiento: [],
         alojamiento: [],
     });
-    const icon = <IconInfoCircle />;
+
     const navigate = useNavigate();
     
         const [searchParams] = useSearchParams();
@@ -165,7 +165,7 @@ function ExperiencePage() {
 
 
                                 </Grid>
-                        ) : (<Alert variant="light" color="myColor" title="No hay alojamientos disponibles para su búsqueda" icon={icon}>
+                        ) : (<Alert variant="light" color="myColor" title="No hay alojamientos disponibles para su búsqueda" icon={<IconInfoCircle />}>
                         </Alert>)}
                     </Grid.Col>
                 </Grid>):(null)}

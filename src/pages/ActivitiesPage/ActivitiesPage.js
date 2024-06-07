@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, Checkbox, Group, Card, Image, Alert, Text, Badge, rem } from '@mantine/core';
-import { IconLocation, IconHomeEco } from '@tabler/icons-react';
+import { IconLocation, IconHomeEco, IconInfoCircle } from '@tabler/icons-react';
 import Footer from '../../components/Footer/Footer';
 import { url } from '../../utils';
 import Header from '../../components/Header/Header';
@@ -152,7 +152,7 @@ function ActivitiesPage() {
                                 ))}
                             </Grid>
                         ) : (
-                            <Alert variant="light" color="myColor" title="No hay actividades disponibles para su búsqueda" />
+                            <Alert variant="light" color="myColor" title="No hay actividades disponibles para su búsqueda" icon={<IconInfoCircle />}/>
                         )}
                     </Grid.Col>
                 </Grid>

@@ -19,7 +19,7 @@ const Equipamiento = ({ experiencia,reservaForm }) => {
             <Grid.Col span={{ base: 11 }} offset={1} >
                 <Title order={2}>Sobre el alojamiento </Title>
                 <hr></hr>
-                <Text size="lg">
+                <Text size="lg" style={{ textAlign: 'justify' }}>
                     {experiencia.informacion}
                 </Text>
                 <Title order={2} mt='xl' >Equipamiento</Title>

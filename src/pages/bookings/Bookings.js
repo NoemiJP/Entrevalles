@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useUser } from "../../components/Usuario/UserProvider";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { IconArrowRight } from '@tabler/icons-react';
-import { Container, rem, Card, Image, NumberInput, Text, Badge, Button, Group, Title, Grid, BackgroundImage } from "@mantine/core";
+import { IconArrowRight, IconInfoCircle } from '@tabler/icons-react';
+import { Container, Alert,rem, Card, Image, NumberInput, Text, Badge, Button, Group, Title, Grid, BackgroundImage } from "@mantine/core";
 import { url } from '../../utils';
 import './Bookings.css';
 
@@ -31,7 +31,7 @@ const Bookings = () => {
     return (
         <>
             <Header />
-            <Container size="xl" style={{minHeight:"81vh"}}>
+            <Container size="xs" style={{minHeight:"81vh"}}>
                 {reservas && reservas.length > 0 ? (<Grid>
                     <Grid.Col span={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
                         {reservas.map((reserva) => {
@@ -103,7 +103,7 @@ const Bookings = () => {
                             )
                         })}
                     </Grid.Col>
-                </Grid>) : (null)}
+                </Grid>) : (<Alert variant="light" color="myColor" title="No tiene ninguna reserva" icon={<IconInfoCircle />} />)}
             </Container>
 
 

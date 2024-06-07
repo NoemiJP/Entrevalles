@@ -73,7 +73,7 @@ const InsertarAlojamiento = () => {
                     method: 'POST',
                     body: JSON.stringify({
                         titulo: values.titulo,
-                        banyos: values.banyos,
+                        banios: values.banyos,
                         habitaciones: values.habitaciones,
                         descripcion: values.descripcion,
                         informacion: values.informacion,

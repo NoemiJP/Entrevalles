@@ -4,6 +4,7 @@ import { Carousel } from '@mantine/carousel';
 import { Grid, Image,Container, Overlay, Text, Title, rem, Flex, Tabs } from "@mantine/core";
 import { IconBrandNordVpn } from '@tabler/icons-react';
 import { url } from "../../utils";
+import './AdminPage.css';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import InsertarExperiencia from "./InsertarExperiencia";
@@ -13,7 +14,7 @@ import InsertarBlog from "./InsertarBlog";
 
 const AdminPage = () => {
     return (<><Header></Header>
-    <Container  size="xxl" className="mainContainer body2" >
+    <Container  size="xxl" className="mainContainerAdmin bodyAdmin" >
         <Grid mb="md">
             <Grid.Col span={{ base: 12 }} >
                 <Tabs color="myColor" defaultValue="Alojamiento" >

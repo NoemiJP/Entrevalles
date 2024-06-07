@@ -36,16 +36,14 @@ const ActivitiesDetail = () => {
                 <>
                     <Grid mb="md">
                         <CarouselExperience experiencia={experiencia}></CarouselExperience>
-                        <Grid.Col pan={{ xs:12,sm:12,md:7,lg:7,xl:7 }} >
+                        <Grid.Col span={{ xs:12,sm:12,md:7,lg:7,xl:7 }} >
                             <Tabs color="myColor" defaultValue="Equipamiento">
                                 <Tabs.List justify="center">
                                     <Tabs.Tab value="Equipamiento">
                                         Información
                                         
                                     </Tabs.Tab>
-                                 {/*   <Tabs.Tab value="Localizacion" >
-                                        Localización
-            </Tabs.Tab>*/}
+                                 
                                     <Tabs.Tab value="Calendario" >
                                         Reservas
                                     </Tabs.Tab>
@@ -55,13 +53,7 @@ const ActivitiesDetail = () => {
                                     <Equipamiento experiencia={experiencia}></Equipamiento>
             </Tabs.Panel>
 
-                                <Tabs.Panel value="Localizacion">
-                                    <Localizacion experiencia={experiencia}></Localizacion>
-                                </Tabs.Panel>
-
-                                {/*<Tabs.Panel value="Normas">
-                                    <Normas experiencia={experiencia}></Normas>
-        </Tabs.Panel>*/}
+             
 
                                 <Tabs.Panel value="Calendario">
                                     <Calendario experiencia={experiencia}></Calendario>

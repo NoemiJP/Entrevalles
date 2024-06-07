@@ -26,7 +26,10 @@ export function Footer() {
 
         <div className='footer'>
             <div className='inner' >
-                <Text size="md" ><IconCopyright style={{ width: rem(24), height: rem(24) }} stroke={1.5} />
+            
+                  <Text size="md" >
+                
+                    <IconCopyright style={{ width: rem(24), height: rem(24) }} stroke={1.5} />
                      2024 Derechos reservados</Text>
 
 
@@ -45,6 +48,9 @@ export function Footer() {
                         <IconBrandInstagram style={{ width: rem(24), height: rem(24) }} stroke={1.5} />
                     </ActionIcon>
                     </Anchor>
+  
+                
+
                 </Group>
             </div>
         </div>

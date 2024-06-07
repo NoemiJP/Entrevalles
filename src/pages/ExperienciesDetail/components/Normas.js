@@ -21,7 +21,7 @@ const Normas = ({ experiencia, reservaForm }) => {
                 <hr></hr>
                 <Text order={2} fw={500} size="xl">
                     Política de cancelación</Text>
-                <Text order={2} mt='lg'>
+                <Text order={2} mt='lg' style={{ textAlign: 'justify' }}>
                     <p>Entendemos que a veces surgen imprevistos y es necesario cancelar una reserva. A continuación, te presentamos nuestra política de cancelación:</p>
 
                     <p>Cancelando con más de 5 días de antelación, se hará un reembolso del 100% de la estancia.</p>
@@ -31,7 +31,7 @@ const Normas = ({ experiencia, reservaForm }) => {
                     <p>Apreciamos tu comprensión y cooperación en este asunto.</p></Text>
                 <Text order={2} fw={500} size="xl" mt="lg">
                     Restricciones</Text>
-                    <Text order={2} mt='lg'>
+                    <Text order={2} mt='lg' style={{ textAlign: 'justify' }}>
                 <p>Para asegurar una experiencia agradable para todos nuestros huéspedes, queremos informarte sobre las siguientes restricciones:</p>
 
                 <p>Edad mínima: Todos los huéspedes deben tener al menos 18 años de edad, a menos que estén acompañados por un adulto.</p>

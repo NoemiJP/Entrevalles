@@ -158,7 +158,7 @@ const FormularioReserva = ({ experiencia }) => {
                 />
             </Group>
 
-            <Button color="blue" fullWidth mt="md" onClick={buscar} radius="md">
+            <Button color="myColor" fullWidth mt="md" onClick={buscar} radius="md">
                 Reservar
             </Button>
             {usuarioError?(<div>{usuarioError}</div>):(null)}
