@@ -7,7 +7,7 @@ import { url } from '../../utils';
 import Header from '../../components/Header/Header';
 import { useSearchParams } from 'react-router-dom';
 
-function ActivitiesPage() {
+const ActivitiesPage = () => {
     const [actividades, setActividades] = useState([]);
     const [actividadesFiltradas, setActividadesFiltradas] = useState([]);
     const [firstTime, setFirstTime] = useState(true);
@@ -22,6 +22,12 @@ function ActivitiesPage() {
         return searchParams.get('destino');
     };
     useEffect(() => {
+        const destino = getDestino();
+        if (destino != null && firstTime) {
+            console.log('Destino');
+            handleFiltroChange('localizacion', [destino]);
+            setFirstTime(false);
+        }
         fetch(`${url()}/activities`)
             .then(response => response.json())
             .then(data => {
@@ -39,12 +45,6 @@ function ActivitiesPage() {
     };
 
     useEffect(() => {
-        const destino = getDestino();
-        if (destino != null && firstTime) {
-            console.log('Destino');
-            handleFiltroChange('localizacion', [destino]);
-            setFirstTime(false);
-        }
         setActividadesFiltradas(actividades.filter(actividad => {
             return (
                 filtros.localizacion.length === 0 || filtros.localizacion.includes(actividad.localizacion)
@@ -63,7 +63,7 @@ function ActivitiesPage() {
         navigate('/activities/' + id);
     };
 
-    return  (
+    return (
         <>
             <Header />
             <div className='container-fluid contenedor'>
@@ -144,15 +144,15 @@ function ActivitiesPage() {
                                             <Text size="sm" mt="md" c="dimmed">{actividad.descripcion}</Text>
                                             <Text size="md" mt="md" fw={700}>{actividad.precio} €</Text>
                                             <Group justify="flex-start" mt="md" mb="xs">
-                                            <Badge color="myColor"><IconLocation style={{ width: rem(16), height: rem(16) }} />  {actividad.localizacion}</Badge>
-                                            <Badge color="myColor"><IconHomeEco style={{ width: rem(16), height: rem(16) }} /> {actividad.tipoActividad}</Badge>
-                                            </Group> 
+                                                <Badge color="myColor"><IconLocation style={{ width: rem(16), height: rem(16) }} />  {actividad.localizacion}</Badge>
+                                                <Badge color="myColor"><IconHomeEco style={{ width: rem(16), height: rem(16) }} /> {actividad.tipoActividad}</Badge>
+                                            </Group>
                                         </Card>
                                     </Grid.Col>
                                 ))}
                             </Grid>
                         ) : (
-                            <Alert variant="light" color="myColor" title="No hay actividades disponibles para su búsqueda" icon={<IconInfoCircle />}/>
+                            <Alert variant="light" color="myColor" title="No hay actividades disponibles para su búsqueda" icon={<IconInfoCircle />} />
                         )}
                     </Grid.Col>
                 </Grid>
