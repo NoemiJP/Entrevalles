@@ -21,22 +21,6 @@ const ActivitiesPage = () => {
     const getDestino = () => {
         return searchParams.get('destino');
     };
-    useEffect(() => {
-        const destino = getDestino();
-        if (destino != null && firstTime) {
-            console.log('Destino');
-            handleFiltroChange('localizacion', [destino]);
-            setFirstTime(false);
-        }
-        fetch(`${url()}/activities`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                setActividades(data);
-                setActividadesFiltradas(data);
-            })
-            .catch(error => console.error('Error fetching activities:', error));
-    }, []);
     const handleFiltroChange = (tipo, value) => {
         setFiltros(prevFiltros => ({
             ...prevFiltros,
@@ -45,15 +29,28 @@ const ActivitiesPage = () => {
     };
 
     useEffect(() => {
-        setActividadesFiltradas(actividades.filter(actividad => {
-            return (
-                filtros.localizacion.length === 0 || filtros.localizacion.includes(actividad.localizacion)
-            ) && (
-                    filtros.tipo_actividad.length === 0 || filtros.tipo_actividad.includes(actividad.tipoActividad)
-                ) && (
-                    filtros.tipo_alojamiento.length === 0 || filtros.tipo_alojamiento.includes(actividad.tipoDeporte)
-                );
-        }));
+        const destino = getDestino();
+        if (destino != null && firstTime) {
+            console.log('Destino');
+            handleFiltroChange('localizacion', [destino]);
+            setFirstTime(false);
+        } else {
+            fetch(`${url()}/activities`)
+                .then(response => response.json())
+                .then(data => {
+                    setActividades(data);
+                    setActividadesFiltradas(data.filter(actividad => {
+                        return (
+                            filtros.localizacion.length === 0 || filtros.localizacion.includes(actividad.localizacion)
+                        ) && (
+                                filtros.tipo_actividad.length === 0 || filtros.tipo_actividad.includes(actividad.tipoActividad)
+                            ) && (
+                                filtros.tipo_alojamiento.length === 0 || filtros.tipo_alojamiento.includes(actividad.tipoDeporte)
+                            );
+                    }));
+                })
+                .catch(error => console.error('Error fetching activities:', error));
+        }
     }, [filtros]);
 
 

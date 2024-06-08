@@ -13,7 +13,7 @@ import { useSearchParams } from 'react-router-dom';
 
 function ExperiencePage() {
     const [experiencias, setExperiencias] = useState([]);
-    const [firstTime, setFirstTime] = useState(false);
+    const [firstTime, setFirstTime] = useState(true);
     const [filtros, setFiltros] = useState({
         localizacion: [],
         equipamiento: [],
@@ -21,10 +21,10 @@ function ExperiencePage() {
     });
 
     const navigate = useNavigate();
-    
-        const [searchParams] = useSearchParams();
-    const getDestino = () =>{
-            return searchParams.get('destino');
+
+    const [searchParams] = useSearchParams();
+    const getDestino = () => {
+        return searchParams.get('destino');
     }
     const handleFiltroChange = (tipo, value) => {
         console.log('Handle Filtro');
@@ -34,29 +34,39 @@ function ExperiencePage() {
         }));
     };
     useEffect(() => {
-        console.log('Effect');
+
+    }, [searchParams]);
+
+    useEffect(() => {
         const destino = getDestino();
-        console.log('Destino',destino);
-        const postData = {
-            localizacion: filtros.localizacion?.length > 0 ? filtros.localizacion : destino==null?null:[destino],
-            equipamiento: filtros.equipamiento?.length > 0 ? filtros.equipamiento : null,
-            alojamiento: filtros.alojamiento?.length > 0 ? filtros.alojamiento : null
-        };
-        // Configuración de la solicitud
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-                // Si la API requiere algún tipo de autenticación, puedes incluir las cabeceras correspondientes aquí
-            },
-            body: JSON.stringify(postData) // Convertir el objeto JavaScript a formato JSON
-        };
-        fetch(`${url()}/experiencias`, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                setExperiencias(data);
-            })
-            .catch(error => console.error('Error fetching users:', error));
+        if (destino && firstTime) {
+            setFiltros(prevFiltros => ({
+                ...prevFiltros,
+                localizacion: [...prevFiltros.localizacion, destino]
+            }));
+            setFirstTime(false);
+        } else {
+            const postData = {
+                localizacion: filtros.localizacion.length > 0 ? filtros.localizacion : null,
+                equipamiento: filtros.equipamiento.length > 0 ? filtros.equipamiento : null,
+                alojamiento: filtros.alojamiento.length > 0 ? filtros.alojamiento : null
+            };
+            // Configuración de la solicitud
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                    // Si la API requiere algún tipo de autenticación, puedes incluir las cabeceras correspondientes aquí
+                },
+                body: JSON.stringify(postData) // Convertir el objeto JavaScript a formato JSON
+            };
+            fetch(`${url()}/experiencias`, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    setExperiencias(data);
+                })
+                .catch(error => console.error('Error fetching users:', error));
+        }
     }, [filtros]);
     const detalleExperiencia = (id) => {
         navigate('/experiencies/' + id);
@@ -66,11 +76,11 @@ function ExperiencePage() {
             <Header></Header>
 
             <div className='container-fluid contenedor'>
-               {experiencias?( <Grid mt="xl" mb="md">
+                {experiencias ? (<Grid mt="xl" mb="md">
                     <Grid.Col span={{ base: 4, md: 4, lg: 2, xs: 5 }} >
                         <Grid>
                             <Grid.Col span={{ base: 4, md: 3, lg: 6, xs: 6, sm: 5 }} >
-                                <Checkbox.Group 
+                                <Checkbox.Group
                                     label='LOCALIDADES'
                                     value={filtros.localizacion} onChange={(value) => handleFiltroChange('localizacion', value)}
                                 >
@@ -79,7 +89,7 @@ function ExperiencePage() {
                                         <Checkbox color="myColor" value="Oviedo" label="Oviedo" />
                                         <Checkbox color="myColor" value="Cudillero" label="Cudillero" />
                                         <Checkbox color="myColor" value="Castrillón" label="Castrillón" />
-                                        <Checkbox color="myColor"value="Gijon" label="Gijón" />
+                                        <Checkbox color="myColor" value="Gijon" label="Gijón" />
                                         <Checkbox color="myColor" value="Caravia" label="Caravia" />
                                         <Checkbox color="myColor" value="Ribadedeva" label="Ribadedeva" />
                                         <Checkbox color="myColor" value="Villaviciosa" label="Villaviciosa" />
@@ -127,48 +137,48 @@ function ExperiencePage() {
                     </Grid.Col>
                     <Grid.Col span={{ base: 8, md: 8, lg: 10, xs: 7 }}>
                         {experiencias.length != 0 ? (
-                                <Grid mb="md">
-                                    {experiencias.map((element) => {
-                                        return (<Grid.Col span={{ base: 12, md: 4, lg: 3, xs: 12, sm: 6 }} key={element.id} >
-                                            <Card onClick={() => { detalleExperiencia(element.id) }} style={{ cursor: 'pointer' }} shadow="sm" padding="lg" radius="md" withBorder>
-                                                <Card.Section>
-                                                   {element.imagenes.length>0?( <Image
-                                                        src={`data:image/jpeg;base64,${element.imagenes[0].imagen}`}
-                                                        height={160}
-                                                        alt="Norway"
-                                                    />):(null)}
-                                                </Card.Section>
+                            <Grid mb="md">
+                                {experiencias.map((element) => {
+                                    return (<Grid.Col span={{ base: 12, md: 4, lg: 3, xs: 12, sm: 6 }} key={element.id} >
+                                        <Card onClick={() => { detalleExperiencia(element.id) }} style={{ cursor: 'pointer' }} shadow="sm" padding="lg" radius="md" withBorder>
+                                            <Card.Section>
+                                                {element.imagenes.length > 0 ? (<Image
+                                                    src={`data:image/jpeg;base64,${element.imagenes[0].imagen}`}
+                                                    height={160}
+                                                    alt="Norway"
+                                                />) : (null)}
+                                            </Card.Section>
 
-                                                <Group justify="space-between" mt="md" mb="xs">
-                                                    <Text fw={500}>{element.titulo}</Text>
-                                                </Group>
+                                            <Group justify="space-between" mt="md" mb="xs">
+                                                <Text fw={500}>{element.titulo}</Text>
+                                            </Group>
 
-                                                <Text size="sm" mt="md" c="dimmed">
-                                                    {element.descripcion}
-                                                </Text>
+                                            <Text size="sm" mt="md" c="dimmed">
+                                                {element.descripcion}
+                                            </Text>
 
-                                                <Text size="md" mt="md" fw={700} >
-                                                    {element.precio} € DESDE/NOCHE
-                                                </Text>
-                                                <Group justify="flex-start" mt="md" mb="xs">
-                                                    <Badge color="myColor"><IconBed style={{ width: rem(16), height: rem(16) }} />  {element.habitaciones}</Badge>
-                                                    {element.banios ? (
-                                                        <Badge color="myColor"><IconBath style={{ width: rem(16), height: rem(16) }} />  {element.banios}</Badge>
-                                                    ) : (null)}
-                                                    <Badge color="myColor"><IconLocation style={{ width: rem(16), height: rem(16) }} />  {element.localizacion}</Badge>
+                                            <Text size="md" mt="md" fw={700} >
+                                                {element.precio} € DESDE/NOCHE
+                                            </Text>
+                                            <Group justify="flex-start" mt="md" mb="xs">
+                                                <Badge color="myColor"><IconBed style={{ width: rem(16), height: rem(16) }} />  {element.habitaciones}</Badge>
+                                                {element.banios ? (
+                                                    <Badge color="myColor"><IconBath style={{ width: rem(16), height: rem(16) }} />  {element.banios}</Badge>
+                                                ) : (null)}
+                                                <Badge color="myColor"><IconLocation style={{ width: rem(16), height: rem(16) }} />  {element.localizacion}</Badge>
 
-                                                </Group>
+                                            </Group>
 
-                                            </Card>
-                                        </Grid.Col>)
-                                    })}
+                                        </Card>
+                                    </Grid.Col>)
+                                })}
 
 
-                                </Grid>
+                            </Grid>
                         ) : (<Alert variant="light" color="myColor" title="No hay alojamientos disponibles para su búsqueda" icon={<IconInfoCircle />}>
                         </Alert>)}
                     </Grid.Col>
-                </Grid>):(null)}
+                </Grid>) : (null)}
             </div>
 
             <Footer></Footer>

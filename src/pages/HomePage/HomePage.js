@@ -39,16 +39,6 @@ function HomePage() {
                 setLoading(true);
             })
             .catch(error => console.error('Error fetching localidades:', error));
-
-        // Obtener experiencias
-        fetch(`${url()}/experiencias`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                setExperiencias(data);
-                setLoading(true);
-            })
-            .catch(error => console.error('Error fetching experiencias:', error));
     }, []);
 
     const buscar = () => {
