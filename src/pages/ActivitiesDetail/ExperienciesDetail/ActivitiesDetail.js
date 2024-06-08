@@ -1,17 +1,11 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import Header from "../../../components/Header/Header";
-import { Carousel } from '@mantine/carousel';
 import { Grid, Image, Overlay, Text, Title, rem, Flex, Tabs } from "@mantine/core";
-import { IconBrandNordVpn } from '@tabler/icons-react';
 import "./ActivitiesDetail.css";
 import Calendario from "./components/Calendario";
 import Equipamiento from "./components/Equipamiento";
-import Localizacion from "./components/Localizacion";
-import Normas from "./components/Normas";
 import CarouselExperience from "./components/CarouselExperience";
-import { Calendar } from '@mantine/dates';
-import dayjs from 'dayjs';
 import FormularioReserva from "./components/FormularioReserva";
 import Footer from "../../../components/Footer/Footer";
 import { url } from "../../../utils";
