@@ -12,15 +12,28 @@ const Bookings = () => {
 
     const user = useUser();
     const [reservas, setReservas] = useState([]);
-
     useEffect(() => {
-        console.log(user);
-        fetch(`${url()}/reservas/${user.user.id}`)
-            .then(response => response.json())
-            .then(data => {
-                setReservas(data);
-            })
-            .catch(error => console.error('Error fetching reservation:', error));
+        const fetchReservas = async () => {
+            try {
+                const response1 = await fetch(`${url()}/reservas/${user.user.id}`);
+                const data1 = await response1.json();
+    
+                const response2 = await fetch(`${url()}/reservasAct/${user.user.id}`);
+                const data2 = await response2.json();
+    
+                // Combinar ambos arrays
+                const combinedData = [...data1, ...data2];
+    
+                // Actualizar el estado con los datos combinados
+                setReservas(combinedData);
+            } catch (error) {
+                console.error('Error fetching reservations:', error);
+            }
+        };
+    
+        if (user && user.user && user.user.id) {
+            fetchReservas();
+        }
     }, [user]);
 
     const formatDate = (dateString) => {
